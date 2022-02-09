@@ -1,0 +1,160 @@
+/* .main {
+    max-width: 95%;
+} */
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.login_user  {
+  color: #ffffff;
+  margin-top: -95px;
+  margin-left: 90%;
+  font-style:arial black;
+}
+
+.dropdwn{
+    max-width: 1200px;
+    display: flex;
+}
+
+ul.dropdwn,
+ul.drop_menu {
+
+    text-align: center;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    color: #fff;
+}
+ul.drop_menu {
+  background: #66cdaa;
+}
+li{
+    max-width: calc(1200px/5);
+    position: relative;
+    padding: 5px;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdwn li{
+    width: 1200px;
+    margin: 1px;
+    /* background: #7ba5ff; */
+    display: inline;
+}
+
+.drop_menu{
+    width: 100%;
+    display: none;
+    position: absolute;
+    margin-left: -5px;
+    margin-top: 5px;
+    padding: 0;
+    z-index: 5;
+}
+
+.drop_menu li{
+    width: 100%;
+    z-index: 5;
+}
+
+.drop_menu li a{
+    padding: 5px 0;
+    margin: -5px 5px -5px -5px;
+    display: block;
+    color: #ffffff;
+    z-index: 5;
+
+}
+
+li a:hover{
+    /* background: #ffffff; */
+    color: #000000;
+    z-index: 5;
+}
+
+.btn {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.category-btn {
+  color: #fff;
+  background-color:cadetblue;
+  margin-left: 80%;
+  width: 300px;
+  margin-top: 50px;
+}
+
+.post-btn {
+ position: relative;
+  color: #fff;
+  background-color:aquamarine;
+  margin-top: 50px;
+  margin-left: 80%;
+  width: 300px;
+}
+
+.my_post_btn {
+  color: #fff;
+  background-color:coral;
+  margin-left: 80%;
+  width: 145px;
+}
+
+.my_post_favorite_btn {
+  color: #000000;
+  margin-top: -65px;
+  margin-left: 88%;
+  width: 145px;
+  font-size:0.9rem;
+}
+.search_btn {
+  color: #fff;
+  background-color:deeppink;
+  margin-left: 88%;
+  margin-top: -65px;
+  width: 145px;
+}
+
+.search_form {
+  color: #fff;
+  /* background-color:deeppink; */
+  margin-left:80%;
+  height: 38px;
+  width: 145px;
+}
+
+.category_title {
+  margin-left:80%;
+  font-size:x-large;
+  position: absolute;
+  font-style:arial black;
+  color: #a9a9a9;
+}
+
+#post_sub_category_search {
+  position:absolute;
+  display: block;
+  margin-left:80%;
+  margin-top: 50px;
+  height: 38px;
+  width: 145px;
+}
+
+.category_reset_btn {
+  color: #fff;
+  background-color:indianred;
+  margin-left: 88%;
+  margin-top: 50px;
+  width: 145px;
+}
+/*
+p.reset_btn {
+    margin-left: 10px;
+} */

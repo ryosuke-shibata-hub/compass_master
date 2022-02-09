@@ -1,0 +1,22 @@
+.item_block {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 30%;
+    width: 1500px;
+    margin-top: -10%;
+}
+
+ul.item_contents {
+    border: solid 2px #dcdcdc;
+    border-radius: 2rem;
+    margin-left: 30px;
+    width: 300px;
+    height: 400px;
+    margin-bottom: 30%;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 5);
+    text-align: center;
+}

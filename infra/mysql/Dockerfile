@@ -1,6 +1,6 @@
 FROM mysql/mysql-server:8.0
 
-ENV MYSQL_DATABASE=laravel \
+ENV MYSQL_DATABASE=compass \
     MYSQL_USER=root \
     MYSQL_PASSWORD=secret \
     MYSQL_ROOT_PASSWORD=secret \

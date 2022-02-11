@@ -1,6 +1,6 @@
 @section('header')
-<header>
-<h1 class="text-center pt-2 pb-2 fst-italic shadow-lg p-3 mb-5 rounded font-monospace" style="background-color:#66cdaa;color:#ffffff;">Compass</h1>
+<header class="top_header">
+<h1 class="header_top text-center pt-2 pb-2 fst-italic shadow-lg p-3 rounded font-monospace" style="background-color:#66cdaa;color:#ffffff;">Compass</h1>
 
 <div class="login_user">
 <ul class="dropdwn">

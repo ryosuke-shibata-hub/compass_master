@@ -1,6 +1,12 @@
-/* .main {
-    max-width: 95%;
-} */
+.contents {
+    background-color: #f5f5f5;
+}
+
+.main {
+  width: 100%;
+  max-width: 100%;
+
+}
 
 li {
   list-style: none;
@@ -12,7 +18,7 @@ a {
 
 .login_user  {
   color: #ffffff;
-  margin-top: -95px;
+  margin-top: -60px;
   margin-left: 90%;
   font-style:arial black;
 }
@@ -35,7 +41,7 @@ ul.drop_menu {
   background: #66cdaa;
 }
 li{
-    max-width: calc(1200px/5);
+    /* max-width: calc(1200px/5); */
     position: relative;
     padding: 5px;
     display: block;
@@ -66,7 +72,7 @@ li{
 
 .drop_menu li a{
     padding: 5px 0;
-    margin: -5px 5px -5px -5px;
+    margin: -1% 1% -1% -1%;
     display: block;
     color: #ffffff;
     z-index: 5;
@@ -79,18 +85,19 @@ li a:hover{
     z-index: 5;
 }
 
-.btn {
+/* .btn {
   font-family: 'Courier New', Courier, monospace;
 }
 
 .category-btn {
+  position: absolute;
   color: #fff;
   background-color:cadetblue;
-  margin-left: 80%;
-  width: 300px;
+  margin-left: 90%;
+  width: 200px;
   margin-top: 50px;
-}
-
+} */
+/*
 .post-btn {
  position: relative;
   color: #fff;
@@ -124,7 +131,6 @@ li a:hover{
 
 .search_form {
   color: #fff;
-  /* background-color:deeppink; */
   margin-left:80%;
   height: 38px;
   width: 145px;
@@ -153,8 +159,4 @@ li a:hover{
   margin-left: 88%;
   margin-top: 50px;
   width: 145px;
-}
-/*
-p.reset_btn {
-    margin-left: 10px;
 } */

@@ -4,12 +4,16 @@ namespace App\Models\Posts;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Users\User;
-///
+;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     protected $table = 'posts';
+
+     protected $dates = [
+       'event_at',
+    ];
 
     protected $fillable = [
         'user_id',
@@ -20,6 +24,8 @@ class Post extends Model
         'post',
         'event_at',
     ];
+
+
 //ユーザーテーブルリレーション
     public function user(){
         return $this->belongsTo('App\Models\Users\User','user_id');

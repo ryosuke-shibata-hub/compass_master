@@ -101,7 +101,7 @@ class Post extends Model
                 });
         }
 
-        return $posts_lists->get();
+        return $posts_lists->paginate(5);
     }
 //投稿機能
     public static function create_post($request) {

@@ -3,41 +3,20 @@
 @include('layouts.login.header')
 @section('contents')
 
-@can('admin')
 
 <div class="home_index_page">
     <div class="home_layouts">
-        <div class="posts_list">
-            <div class="item_block">
-                @foreach($posts_lists as $post_list)
-                <div class="item">
-                    <ul class="item_contents">
-                        <li class="item_post_username">{{ $post_list->user->username }}さんが</li>
-                        <li class="item_post_date">{{ $post_list->event_at->format('Y年m月d日') }}に投稿しました。</li>
+         <div class="btn_list">
+        <div class="nav_btn">
 
-                        <li class="item_title">
-                             <a class="item_title" href="{{ route('post_show',[$post_list->id]) }}">
-                            {{ $post_list->title }}
-                        </a></li>
-                        <li class="item_sub_category">
-                            <i class="fas fa-tags"></i>{{ $post_list->postSubCategory->sub_category }}</li>
-                        <li class="item_favorite_count">
-                        <i class="fas fa-heart" style="color: red;"></i>　{{ $post_list->userPostFavoriteRelation->count() }}
-                        </li>
-                        <li class="comment_count"><i class="fas fa-comment-dots"></i>　{{ $post_list->postComments->count() }}
-                        </li>
-                        <li class="item_visitor_count"><i class="fas fa-eye"></i>　{{ $post_list->ActionLog->count() }}view
-                        </li>
-                </ul>
-                </div>
-                @endforeach
-            </div>
-        </div>
-
-        <p class="create_category">
+        @can('admin')
+            <p class="create_category">
             <a type="btn" class="btn category-btn" href="{{ route('postCategory.index') }}">カテゴリーを追加
             </a>
         </p>
+        @else
+        <p class="create_category pt-5"></p>
+        <p class="create_category pt-5"></p>
         @endcan
         <p class="create_category">
             <a type="btn" class="btn post-btn" href="{{ route('post.create') }}">
@@ -59,7 +38,7 @@
                 name="post_favorite"
                 value="post_favorite">
                 いいねした投稿
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart" style="color: red;"></i>
             </button>
         </Form>
 
@@ -90,6 +69,40 @@
         <p class="reset_btn">
             <a type="btn" class="btn category_reset_btn"href="{{ route('userPostIndex') }}">リセット</a>
         </p>
+        </div>
+        </div>
+        <div class="posts_list">
+            <div class="item_block">
+                @foreach($posts_lists as $post_list)
+                <div class="item">
+                    <ul class="item_contents">
+                        <li class="item_post_username">{{ $post_list->user->username }}さんが</li>
+                        <li class="item_post_date">{{ $post_list->event_at->format('Y年m月d日') }}に投稿しました。
+                        </li>
+
+                        <li class="item_title">
+                             <a class="item_title" href="{{ route('post_show',[$post_list->id]) }}">
+                            {{ $post_list->title }}
+                        </a></li>
+                        <li class="item_sub_category">
+                            <i class="fas fa-tags"></i>{{ $post_list->postSubCategory->sub_category }}</li>
+                        <li class="item_favorite_count">
+                        <i class="fas fa-heart" style="color: red;"></i>　{{ $post_list->userPostFavoriteRelation->count() }}
+                        </li>
+                        <li class="comment_count"><i class="fas fa-comment-dots"></i>　{{ $post_list->postComments->count() }}
+                        </li>
+                        <li class="item_visitor_count"><i class="fas fa-eye"></i>　{{ $post_list->ActionLog->count() }}view
+                        </li>
+                </ul>
+                </div>
+                @endforeach
+            </div>
+            <div class="paginate">
+                <li class="page-item">
+                    {{ $posts_lists->links() }}
+                </li>
+            </div>
+        </div>
 
     </div>
 </div>

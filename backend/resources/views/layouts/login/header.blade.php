@@ -4,7 +4,7 @@
 
 <div class="login_user">
 <ul class="dropdwn">
-<li>
+<li class="dropdown_bar">
   <i class="fas fa-power-off">
   {{ Auth::user()->username }}
   </i>

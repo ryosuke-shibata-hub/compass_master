@@ -16,6 +16,12 @@ class LoginController extends Controller
 
     public function login(Request $request) {
 
+        $validate = [
+            'checkbox' => 'required'
+        ];
+
+        $this->validate($request, $validate);
+
         $data['email'] = $request->email;
         $data['password'] = $request->password;
 
@@ -23,7 +29,7 @@ class LoginController extends Controller
             return redirect()->route('userPostIndex');
         }
         return back()
-            ->with('login_erro','*メールアドレスまたはパスワードが違います。');
+            ->with('login_error','*メールアドレスまたはパスワードが違います。');
     }
 
     public function logout() {

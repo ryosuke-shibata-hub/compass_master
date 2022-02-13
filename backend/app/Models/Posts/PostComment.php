@@ -10,6 +10,10 @@ class PostComment extends Model
 {
     protected $table = 'post_comments';
 
+      protected $dates = [
+       'event_at',
+    ];
+
     protected $fillable = [
         'user_id',
         'post_id',

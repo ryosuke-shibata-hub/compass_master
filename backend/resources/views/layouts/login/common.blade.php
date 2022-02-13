@@ -14,16 +14,16 @@
 </head>
 <body>
 
-
+ @yield('header')
   <div class="contents">
    <div class="main">
-    @yield('header')
+
      @yield('contents')
-     @yield('footer')
-    @yield('btn-dell')
+
    </div>
   </div>
-
+    @yield('footer')
+    @yield('btn-dell')
 
 </body>
 </html>

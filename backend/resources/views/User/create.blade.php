@@ -2,6 +2,9 @@
 @section('title','投稿ページ')
 @include('layouts.login.header')
 @section('contents')
+
+<a class="btn btn-dark back_btn" type="button" href="{{ route('userPostIndex') }}">戻る</a>
+
 <div class="edit_item">
     <Form action="{{ route('post.store') }}" method="post">
 @csrf
@@ -23,10 +26,12 @@
 <input class="create_item w-50" style="height:50px;" type="text" name="title">
 <label class=" pt-5">投稿内容</label>
 <input class="create_item w-50 create_item_form" type="text" name="post">
-<button type="submit" class="btn btn-outline-success post_register_btn">登録</button>
+<div class="create_form_btn">
+    <button type="submit" class="btn btn-outline-success post_register_btn">登録</button>
+</div>
 </Form>
 </div>
-<a class="btn btn-primary back_btn" type="button" href="{{ route('userPostIndex') }}">戻る</a>
+
 
 
 @endsection

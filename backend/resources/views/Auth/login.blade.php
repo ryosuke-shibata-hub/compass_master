@@ -3,9 +3,9 @@
 @include('layouts.logout.header')
 @section('contents')
 
-@if(session('login_erro'))
-  <span class="text_danger">
-    {{ session('login_erro') }}
+@if(session('login_error'))
+  <span class="text-danger">
+    {{ session('login_error') }}
   </span>
 @endif
     <form action="{{ route('login') }}" method="post">
@@ -19,8 +19,13 @@
         <label for="exampleInputPassword1" class="form-label pb-5">パスワード</label>
         <input style="margin-left:38%;" type="password" name="password" class="form-control mb-5 w-25" id="exampleInputPassword1">
       </div>
+      @if($errors->has('checkbox'))
+        <span class="error-checkbox text-danger">
+            *{{ $errors->first('checkbox') }}
+        </span>
+      @endif
       <div class="mb-3 form-check" style="margin-left:55%;">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="checkbox">
         <label class="form-check-label mb-5" for="exampleCheck1">Check me out</label>
       </div>
       <button type="submit" style="margin-left:58%;" class="btn btn-primary">ログイン</button>

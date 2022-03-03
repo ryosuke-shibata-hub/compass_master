@@ -3,10 +3,9 @@
 @include('layouts.login.header')
 @section('contents')
 
-
 <div class="home_index_page">
     <div class="home_layouts">
-         <div class="btn_list">
+        <div class="btn_list">
         <div class="nav_btn">
 
         @can('admin')
@@ -73,10 +72,18 @@
         </div>
         <div class="posts_list">
             <div class="item_block">
+                    @if($posts_lists->count() > 0)
+                    @else
+                    <div class="non_post">
+                        該当の投稿はありません....💬
+                    </div>
+                    @endif
                 @foreach($posts_lists as $post_list)
                 <div class="item">
                     <ul class="item_contents">
-                        <li class="item_post_username">{{ $post_list->user->username }}さんが</li>
+                        <li class="item_post_username">
+                            <img style="width:20px;" src="/uploads/{{ $post_list->user->logo }}">
+                            {{ $post_list->user->username }}さんが</li>
                         <li class="item_post_date">{{ $post_list->event_at->format('Y年m月d日') }}に投稿しました。
                         </li>
 

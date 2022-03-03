@@ -49,8 +49,8 @@
         method="post">
         @method('DELETE')
         @csrf
-        <a class="main_category_title" href="javascript:post_main_category_delete{{ $main_data->id }}.submit()">
-          メインカテゴリー削除</a>
+        <a type="button" class="delete_main_category btn btn-danger btn-dell" href="javascript:post_main_category_delete{{ $main_data->id }}.submit()">
+          削除<i class="far fa-trash-alt"></i></a>
       </Form>
       @endif
         <ul class="sub_category_title">
@@ -62,8 +62,8 @@
           method="post">
           @method('DELETE')
           @csrf
-          <a class="delete_sub_category" href="javascript:post_sub_category_delete{{ $sub_data->id }}.submit()">
-            サブカテゴリー削除</a>
+          <a type="button" class="delete_sub_category btn-dell btn btn-danger" href="javascript:post_sub_category_delete{{ $sub_data->id }}.submit()">
+            削除<i class="far fa-trash-alt"></i></a>
         </Form>
         @endif
         @endforeach

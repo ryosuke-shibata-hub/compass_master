@@ -15,7 +15,7 @@
   </li>
   <li>
   <p>
-  <a href="">My page</a>
+  <a href="{{ route('mypage') }}">My page</a>
   </p>
   </li>
   </ul>

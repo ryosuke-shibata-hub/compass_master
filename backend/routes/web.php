@@ -58,6 +58,12 @@ Route::group(['middleware' => ['can:user']],function() {
             });
         });
         Route::namespace('User')->group(function() {
+            Route::get('/mypage','UserController@index')->name('mypage');
+
+            Route::get('mypage/edit','UserController@edit')->name('mypage_edit');
+            Route::Post('mypage/edit', 'UserController@update')->name('mypage_update');
+
+
             Route::namespace('Post')->group(function() {
                 //一覧表示
                 Route::get('/post/index/{category?}','PostsController@index')

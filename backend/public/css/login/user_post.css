@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.non_post {
+    text-align: center;
+}
+
 .item_block {
     margin-top: -400px;
     min-height: 510px;
@@ -80,4 +84,10 @@ a.item_title:hover {
     /* position: absolute; */
     margin-left: 80%;
     margin-top: -40px;
+}
+.item_detail_title {
+    margin-top: -30px;
+}
+.item_detail_post {
+    font-size: 2.0rem;
 }

@@ -3,8 +3,7 @@
 @include('layouts.login.header')
 @section('contents')
 
-<p>
-  <a type="button" class="btn btn-dark back_btn" href="{{ route('userPostIndex') }}">トップページへ</a>
+  <a type="button" class="btn btn-info back_btn" href="{{ route('userPostIndex') }}">トップページへ</a>
 </p>
 <p>
   @if(Auth::user()->contributorAndAdmin($posts_detail->user_id))
@@ -17,10 +16,15 @@
   <li>投稿者:{{ $posts_detail->user->username }}</li>
   <li class="item_detail_date">投稿日時:{{ $posts_detail->event_at->format('Y年m月d日') }}</li>
   <li class="item_detail_view">閲覧数:{{ $posts_detail->Actionlog->count() }}view</li>
-  <li class="item_detail_post">{{ $posts_detail->title }}</li>
+  <li class="item_detail_title">タイトル:{{ $posts_detail->title }}</li>
+  <li class="item_detail_post">{{ $posts_detail->post }}</li>
   <li class="item_detail_sub_category">{{ $posts_detail->postSubCategory->sub_category }}</li>
   <li class="item_detail_comment">コメント数:{{ $posts_detail->postComments->count() }}</li>
-  <li class="item_detail_favorite_count">いいね数:{{ $posts_detail->userPostFavoriteRelation->count() }}</li>
+  <li class="item_detail_favorite_count">いいね数:
+    <span id="post_favorite_count{{ $posts_detail->id }}">
+        {{$posts_detail->userPostFavoriteRelation->count() }}
+    </span>
+  </li>
 
   <li class="item_detail_favorite" style="list-style: none;">
 @if($posts_detail->postFavoriteIsExistence($posts_detail))
@@ -36,29 +40,27 @@
 @endif
 </li>
 </ul>
-
-
-
 </div>
 
-
-@foreach($posts_detail->postComments as $postComment)
+@foreach($postComment as $postComment)
 
 <div class="post_comment_list">
-  <p class="comment_username">{{ $postComment->user->username }}さんが</p>
-  <p class="comment_date">{{ $postComment->event_at->format('Y年m月d日') }}にコメントしました。</p>
+  <li class="comment_username">{{ $postComment->user->username }}さんが</li>
+  <li class="comment_date">{{ $postComment->updated_at->format('Y年m月d日') }}にコメントしました。</li>
+  <li class="comment_detail">{{ $postComment->comment }}</li>
+  <li class="favorite_count">いいね数:
+     <span id="comment_favorite_count{{ $postComment->id }}">
+     {{ $postComment->comment_favorite_count }}
+  </li>
 
-  <p class="comment_detail">{{ $postComment->comment }}</p>
-  <p class="favorite_count">いいね数:{{ $posts_detail->userCommentFavoriteRelation->count() }}</p>
-
-  @if($posts_detail->postCommentFavoriteIsExistence($posts_detail))
-    <a class="comment_favorite" comment_id="{{ $postComment->id }}"
-      comment_favorite_id="0" style="color:#FF0000; text-decoration: none;">
+  @if(!$postComment->postCommentFavoriteIsExistence(Auth::user()))
+     <a class="comment_favorite" comment_id="{{ $postComment->id }}" post_id="{{ $postComment->post_id }}"
+      comment_favorite_id="1" style="color:#FF0000; text-decoration: none;">
       <i class="far fa-heart"></i>
     </a>
   @else
-    <a class="comment_favorite" comment_id="{{ $postComment->id }}"
-      comment_favorite_id="1" style="color:#FF0000; text-decoration: none;">
+    <a class="comment_favorite" comment_id="{{ $postComment->id }}" post_id="{{ $postComment->post_id }}"
+      comment_favorite_id="0" style="color:#FF0000; text-decoration: none;">
       <i class="fas fa-heart"></i>
     </a>
   @endif

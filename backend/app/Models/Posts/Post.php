@@ -4,7 +4,8 @@ namespace App\Models\Posts;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Users\User;
-;
+use Log;
+use App\Models\Posts\PostComment;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -27,17 +28,20 @@ class Post extends Model
 
 
 //ユーザーテーブルリレーション
-    public function user(){
-        return $this->belongsTo('App\Models\Users\User','user_id');
-    }
+public function user(){
+
+    return $this->belongsTo('App\Models\Users\User','user_id');
+}
 //サブカテゴリーテーブルリレーション
     public function postSubCategory() {
+
         return $this->belongsTo('App\Models\Posts\PostSubCategory','post_sub_category_id');
     }
 //post_commentのリレーション
     public function postComments() {
         return $this->hasMany('App\Models\Posts\PostComment');
     }
+
 //ActionLogとのリレーション
     public function Actionlog() {
         return $this->hasMany('App\Models\ActionLogs\ActionLog');
@@ -47,22 +51,24 @@ class Post extends Model
         return $this->belongsToMany('App\Models\Users\User','post_favorites','post_id'
         ,'user_id');
     }
-//userのコメントとfavoriteのリレーション
-    public function userCommentFavoriteRelation() {
-        return $this->belongsToMany('App\Models\Posts\PostComment','post_comment_favorites',
-        'post_comment_id','user_id');
-    }
+
 //N+1
     public static function postQuery(){
         return self::with([
             'user',
             'postSubCategory',
             'postComments.user',
+            // 'postComments.userCommentFavoriteRelation',
             'Actionlog',
             'userPostFavoriteRelation',
-            'userCommentFavoriteRelation',
         ]);
     }
+
+    //投稿詳細
+   public static function postDetail($id) {
+        return self::postQuery()->findOrFail($id);
+    }
+
 //post->user,subcate一覧（リレーション）
     public static function posts_lists($request,$subcategory_id) {
 
@@ -113,10 +119,7 @@ class Post extends Model
         $post->fill($data)->save();
 
     }
-//投稿詳細
-   public static function postDetail($id) {
-        return self::postQuery()->findOrFail($id);
-    }
+
 //投稿編集
     public static function postUpdate($request,$posts_detail)
     {
@@ -142,26 +145,27 @@ class Post extends Model
             return $posts_detail->userPostFavoriteRelation()->attach(Auth::id());
         }
     }
-//コメントへのいいね機能
-    public static function CommentFavorite($comment_id,$comment_favorite_id) {
 
-        $posts_detail = self::findOrFail($comment_id);
-
-        if($comment_favorite_id) {
-            return $posts_detail->userCommentFavoriteRelation()->detach(Auth::id());
-        }else{
-            return $posts_detail->userCommentFavoriteRelation()->attach(Auth::id());
-        }
-    }
 //いいねしているかの判断(投稿)
     public static function postFavoriteIsExistence($posts_detail) {
 
         return is_null($posts_detail->userPostFavoriteRelation->find(Auth::id()));
     }
-//いいねしているかの判断(コメント)
-    public static function postCommentFavoriteIsExistence($posts_detail) {
 
-        return is_null($posts_detail->userCommentFavoriteRelation
-        ->find(Auth::id()));
-    }
+    // public static function postCommentFavoriteAndUnFavorite($comment_id,$comment_favorite_id) {
+
+    //     $posts_detail = self::findOrFail($comment_id);
+
+    //     if($comment_favorite_id) {
+    //         return $posts_detail->userCommentFavoriteRelation()->detach(Auth::id());
+    //     }else{
+    //         return $posts_detail->userCommentFavoriteRelation()->attach(Auth::id());
+    //     }
+    // }
+
+    // public static function postCommentFavoriteIsExistence($posts_detail) {
+
+    //     return is_null($posts_detail->postComments->find(Auth::id()));
+    // }
+
 }

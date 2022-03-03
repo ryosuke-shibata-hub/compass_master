@@ -13,18 +13,19 @@ class UserTable extends Seeder
     public function run()
     {
         //
-        for ($i = 1; $i < 10; $i++) {
-            User::create([
-                'username' => 'テストユーザー'.$i,
-                'email' => 'email_email'.$i.'@email.com',
-                'password' => bcrypt('test'.$i),
-            ]);
-        }
+        // for ($i = 1; $i < 10; $i++) {
+        //     User::create([
+        //         'username' => 'テストユーザー'.$i,
+        //         'email' => 'email_email'.$i.'@email.com',
+        //         'password' => bcrypt('test'.$i),
+        //     ]);
+        // }
 
         User::create([
-            'username' => '管理者',
+            'username' => 'テストユーザーだお',
             'email' => 'email_email_email@email.com',
             'password' => bcrypt('123456789'),
+            'logo' => "";
             'admin_role' => 1,
         ]);
     }

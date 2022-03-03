@@ -10,6 +10,6 @@ class PostFavorite extends Model
 
     protected $fillable = [
         'user_id',
-        'post__id',
+        'post_id',
     ];
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Posts\PostMainCategory;
+use App\Models\Posts\PostComment;
 use App\Models\Posts\Post;
 use App\Models\Users\User;
+use Log;
 use Auth;
 
 
@@ -36,9 +38,13 @@ class PostsController extends Controller
     }
 //投稿詳細画面
     public function show($id) {
+        $postComment = PostComment::withCount('comment_favorite')
+        ->where('post_id',$id)
+        ->orderBy('updated_at', 'desc')->paginate(10);
 
         return view('User.show')
-        ->with('posts_detail',Post::postDetail($id));
+        ->with('posts_detail',Post::postDetail($id))
+        ->with('postComment',$postComment);
     }
 //投稿編集画面
     public function edit($id) {
@@ -57,6 +63,7 @@ class PostsController extends Controller
     public function update(Request $request,$id) {
 
         $posts_detail = Post::postDetail($id);
+
         if (User::contributorAndAdmin($posts_detail->user_id)) {
             $posts_detail->postUpdate($request, $posts_detail);
             return redirect()->route('post_show',[$id]);

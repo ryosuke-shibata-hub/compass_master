@@ -6,6 +6,15 @@
 .back_btn {
     margin-left: 30px;
 }
+
+.comment_delete_btn {
+    margin-left: 22%;
+    margin-top: -55px;
+}
+.post_delete_btn {
+    margin-top: -38px;
+    margin-left: 25%;
+}
 .top_header {
     height: 100px;
 
@@ -168,6 +177,7 @@ li a:hover{
 }
 
 .edit_item {
+    min-height: 800px;
     width: 80%;
     padding-left: 40%;
     padding-bottom: 200px;
@@ -193,7 +203,8 @@ li a:hover{
     -o-border-radius: 1.5rem;
 }
 
-.create_item_form {
+.create_item_form,
+.edit_comment_form {
     height: 180px;
 }
 
@@ -201,8 +212,9 @@ li a:hover{
     padding-top: 20px;
 }
 
-.post_register_btn {
-    margin-left: 22%;
+.post_register_btn,
+.comment_edit_btn {
+    margin-left: 40%;
 }
 
 .create_maincategory {
@@ -241,6 +253,10 @@ li a:hover{
 .category_list {
     font-size: 1.5rem;
     padding-left: 270px;
+}
+
+.delete_main_category {
+    margin-left: 10%;
 }
 
 a.main_category_title,

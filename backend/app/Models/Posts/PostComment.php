@@ -5,6 +5,7 @@ namespace App\Models\Posts;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Carbon\Carbon;
+use Log;
 
 class PostComment extends Model
 {
@@ -22,7 +23,33 @@ class PostComment extends Model
         'comment',
         'event_at',
     ];
-//コメント機能
+
+    //Userとのリレーション
+    public function user() {
+        return $this->belongsTo('App\Models\Users\User','user_id');
+    }
+
+    public function commentFavorite() {
+        return $this->hasMany(PostCommentFavorite::Class);
+    }
+
+    public function postCommentFavoriteIsExistence()
+    {
+        return PostCommentFavorite::where('user_id',Auth::user()->id)->where('post_comment_id',$this->id)
+        ->first() !==null;
+    }
+
+    public function comment_favorite() {
+       return $this->hasMany(PostCommentFavorite::class);
+    }
+
+    // public function userCommentFavoriteRelation() {
+    //     return $this->belongsToMany('App\Models\Users\User','post_comment_favorites',
+    //     'post_comment_id','user_id');
+    // }
+
+
+    //コメント機能
     public static function comment_store($request,$id) {
 
         $comment = new PostComment();
@@ -34,11 +61,7 @@ class PostComment extends Model
         $comment->fill($data)->save();
 
     }
-//Userとのリレーション
-    public function user() {
-        return $this->belongsTo('App\Models\Users\User','user_id');
-    }
-
+    //コメント編集
     public static function comment_update($request,$post_comment_detail) {
 
         $data['comment'] = $request->comment;
@@ -46,4 +69,5 @@ class PostComment extends Model
 
         return $post_comment_detail->fill($data)->save();
     }
+
 }

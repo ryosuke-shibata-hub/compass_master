@@ -72,7 +72,8 @@ public function user(){
 //post->user,subcate一覧（リレーション）
     public static function posts_lists($request,$subcategory_id) {
 
-        $posts_lists = self::postQuery();
+        $posts_lists = self::postQuery()
+        ->orderBy('updated_at','desc');
         $keyword = $request->search_keyword;
         $favorite_post = $request->post_favorite;
         $my_post = $request->my_post;
@@ -103,7 +104,8 @@ public function user(){
                 ->orwhereIn('id',function($query) {
                     $query->from('posts')
                           ->select('id')
-                          ->where('user_id',Auth::id());
+                          ->where('user_id',Auth::id())
+                          ->orderBy('created_at','desc');
                 });
         }
 

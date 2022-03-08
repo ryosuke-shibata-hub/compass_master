@@ -6,7 +6,7 @@
 <ul class="dropdwn">
 <li class="dropdown_bar">
   <i class="fas fa-power-off">
-  {{ Auth::user()->username }}
+  {{ Auth::user()->username_kanji }}
   </i>
   <i class="fas fa-angle-down openbtn"></i>
   <ul class="drop_menu">

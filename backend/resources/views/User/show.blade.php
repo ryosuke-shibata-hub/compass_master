@@ -13,7 +13,7 @@
 
 <div class="item_detail">
     <ul class="item_detail_contents">
-  <li>投稿者:{{ $posts_detail->user->username }}</li>
+  <li>投稿者:{{ $posts_detail->user->username_kanji }}</li>
   <li class="item_detail_date">投稿日時:{{ $posts_detail->event_at->format('Y年m月d日') }}</li>
   <li class="item_detail_view">閲覧数:{{ $posts_detail->Actionlog->count() }}view</li>
   <li class="item_detail_title">タイトル:{{ $posts_detail->title }}</li>
@@ -45,7 +45,7 @@
 @foreach($postComment as $postComment)
 
 <div class="post_comment_list">
-  <li class="comment_username">{{ $postComment->user->username }}さんが</li>
+  <li class="comment_username">{{ $postComment->user->username_kanji }}さんが</li>
   <li class="comment_date">{{ $postComment->updated_at->format('Y年m月d日') }}にコメントしました。</li>
   <li class="comment_detail">{{ $postComment->comment }}</li>
   <li class="favorite_count">いいね数:

@@ -91,3 +91,18 @@ a.item_title:hover {
 .item_detail_post {
     font-size: 2.0rem;
 }
+
+.side_menu {
+    background-color: #66cdaa;
+    display: block;
+    position: absolute;
+    width: 200px;
+    /* max-height: 100px; */
+    /* min-height: 930px; */
+    margin-top: -40px;
+    border: solid 0px #dcdcdc;
+}
+
+.nav_list {
+    border-bottom: solid 1px #a9a9a9;
+}

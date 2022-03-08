@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users\User;
 use Auth;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -16,6 +17,18 @@ class UserController extends Controller
         $id = Auth::user()->id;
         return view('User.mypage')
         ->with('id',$id);
+    }
+
+    public function show()
+    {
+
+        // $birthday = User::userList()->paginate(10,'birthday');
+        // $birthday = date('Y-m-d',strtotime($birthday));
+        // $birthday = Carbon::parse($birthday);
+        // $birthday = $birthday->age;
+// dd(User::userList());
+        return view('User.all_user_list')
+        ->with('user_lists',User::userList());
     }
 
     public function edit() {

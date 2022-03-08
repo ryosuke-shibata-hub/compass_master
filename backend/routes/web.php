@@ -44,7 +44,16 @@ Route::group(['middleware' => ['auth']],function() {
                 Route::resource('post_sub_category','PostSubCategoriesController',['only'=>['store','destroy']]);
 
         });
+            Route::namespace('User')->group(function(){
+                Route::get('admin/index','UserAdminController@index')
+                ->name('Administrator');
+                Route::get('admin/create/new/user','UserAdminController@create')
+                ->name('user_create');
+                 Route::post('admin/create/new/user/register','UserAdminController@store')
+                ->name('user_create_register');
+            });
         });
+
     });
 
     //一般ユーザー、管理者共通画面
@@ -63,6 +72,7 @@ Route::group(['middleware' => ['can:user']],function() {
             Route::get('mypage/edit','UserController@edit')->name('mypage_edit');
             Route::Post('mypage/edit', 'UserController@update')->name('mypage_update');
 
+            Route::get('/user/all_user_list','UserController@show')->name('all_user_list');
 
             Route::namespace('Post')->group(function() {
                 //一覧表示

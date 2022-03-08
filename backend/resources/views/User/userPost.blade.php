@@ -5,6 +5,7 @@
 
 <div class="home_index_page">
     <div class="home_layouts">
+
         <div class="btn_list">
         <div class="nav_btn">
 
@@ -81,9 +82,18 @@
                 @foreach($posts_lists as $post_list)
                 <div class="item">
                     <ul class="item_contents">
-                        <li class="item_post_username">
+                        @if(!empty($post_list->user->logo))
+                            <li class="item_post_username">
                             <img style="width:20px;" src="/uploads/{{ $post_list->user->logo }}">
-                            {{ $post_list->user->username }}さんが</li>
+                            {{ $post_list->user->username_kanji }}さんが
+                            </li>
+                        @else
+                            <li class="item_post_username">
+                            <img style="width:20px;" src="/uploads/user-regular-2.svg">
+                            {{ $post_list->user->username_kanji }}さんが
+                            </li>
+                        @endif
+
                         <li class="item_post_date">{{ $post_list->event_at->format('Y年m月d日') }}に投稿しました。
                         </li>
 
@@ -105,7 +115,7 @@
                 @endforeach
             </div>
             <div class="paginate">
-                <li class="page-item">
+                <li class="page-item" style="margin-left: px;">
                     {{ $posts_lists->links() }}
                 </li>
             </div>

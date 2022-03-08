@@ -20,13 +20,18 @@ class UserTable extends Seeder
         //         'password' => bcrypt('test'.$i),
         //     ]);
         // }
-
-        User::create([
-            'username' => 'テストユーザーだお',
-            'email' => 'email_email_email@email.com',
-            'password' => bcrypt('123456789'),
-            'logo' => "";
-            'admin_role' => 1,
-        ]);
+    //     for ($i = 1; $i < 10; $i++) {
+    //     User::create([
+    //         'username_kanji' => 'テスト太郎',
+    //         'username_kana' => 'テストタロウ',
+    //         'birthday' => '1990',
+    //         'AdmissionDay' => '2010',
+    //         'gender' =>,
+    //         'email' => 'email_email_email@email.com',
+    //         'password' => bcrypt('123456789'),
+    //         'logo' => "",
+    //         'admin_role' => 15,
+    //     ]);
+    // }
     }
 }

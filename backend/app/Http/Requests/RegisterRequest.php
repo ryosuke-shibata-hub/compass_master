@@ -41,7 +41,7 @@ class RegisterRequest extends FormRequest
             'email.email' => 'メールアドレス入れて！',
             'email.unique' => 'そのメアドは登録済みだよ！',
             'email.max' => '最大30文字だよ！',
-            'password.required' => 'パスワードpいれて！',
+            'password.required' => 'パスワードを入力してください',
             'password.min' => '最低8文字入れて！',
             'password.max' => '最大30文字にして！',
             // 'password.confirmed' => '確認用パスワードがちがうお！！',

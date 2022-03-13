@@ -1,5 +1,15 @@
 $(function () {
 
+    $('.open-btn').click(function () {
+        console.log('ok');
+    $('#overlay, .modal_window').fadeIn();
+    $('html').css('overflow-y','hidden');
+    });
+    $('.close_button').click(function () {
+    $('#overlay, .modal_window').fadeOut();
+    $('html').css('overflow-y','scroll');
+    });
+
     $('.dropdwn li').hover(function () {
       $("ul:not(:animated)", this).slideDown();
     }, function () {
@@ -96,5 +106,8 @@ $(function () {
     var url = '/post/index/' + category_id;
     window.location = url;
   });
+
+    $('#from_datepicker').datepicker();
+    $('#to_datepicker').datepicker();
 
 });

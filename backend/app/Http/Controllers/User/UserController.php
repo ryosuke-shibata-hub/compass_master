@@ -19,16 +19,14 @@ class UserController extends Controller
         ->with('id',$id);
     }
 
-    public function show()
+    public function show(Request $request)
     {
 
-        // $birthday = User::userList()->paginate(10,'birthday');
-        // $birthday = date('Y-m-d',strtotime($birthday));
-        // $birthday = Carbon::parse($birthday);
-        // $birthday = $birthday->age;
-// dd(User::userList());
+
+        // dd($request);
         return view('User.all_user_list')
-        ->with('user_lists',User::userList());
+        ->with('user_lists',User::userList($request));
+        // ->with('age',$age);
     }
 
     public function edit() {

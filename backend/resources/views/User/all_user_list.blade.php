@@ -24,8 +24,17 @@
                     <div class="form-group">
                         <label class="search_title">並び替え:</label>
                         <div class="search_box">
-                            <label>名前:</label>
-                            <select name="name_sort_desc">
+                            <select name="sort_parents">
+                                <option></option>
+                                <option value="0">名前</option>
+                                <option value="1">年齢</option>
+                                <option value="2">入学日</option>
+                                <option value="3">点数</option>
+                            </select>
+                            <select name="sort_children">
+                                <option></option>
+                                <option value="0">昇順</option>
+                                <option value="1">降順</option>
                             </select>
                         </div>
                     </div>
@@ -57,30 +66,26 @@
                             <label>〜</label>
                             <label>TO</label>
                             <input type="text" id="to_datepicker" class="input_button" name="to_admission">
-                            {{-- <input type="date" id="from_datepicker" class="input_button" name="from_admission">
-                            <label>〜</label>
-                            <label>TO</label>
-                            <input type="date" id="to_datepicker" class="input_button" name="to_admission"> --}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="search_title">担当数学教師:</label>
-                        @foreach($user_lists as $math_teacher)
+                        @foreach($search_list as $math_teacher)
                         <div class="search_box">
                             @if($math_teacher->admin_role == 5)
                                 <label>{{ $math_teacher->username_kanji }}</label>
-                                <input type="checkbox" class="input_button" name="math_teacher" value="">
+                                <input type="checkbox" class="input_button" name="math_teacher" value={{ $math_teacher->id }}>
                             @endif
                         </div>
                         @endforeach
                     </div>
                     <div class="form-group">
                         <label class="search_title">担当国語教師:</label>
-                        @foreach($user_lists as $japanese_language_teacher)
+                        @foreach($search_list as $japanese_language_teacher)
                         <div class="search_box">
-                            @if($japanese_language_teacher->admin_role == 7)
+                            @if($japanese_language_teacher->admin_role == 0)
                                  <label>{{ $japanese_language_teacher->username_kanji }}</label>
-                                <input type="checkbox" class="input_button" name="japanese_language" value="">
+                                <input type="checkbox" class="input_button" name="japanese_language" value={{ $japanese_language_teacher->id }}>
                             @endif
                         </div>
                         @endforeach
@@ -122,12 +127,14 @@
                     </button>
                 </form>
             </div>
+        @if($user_lists->count() > 0)
 
         <div class="item_box">
             <div class="all_user_list">
         @foreach($user_lists as $user_list)
 
                     <div class="user_item_box">
+
                         @if(!empty($user_list->logo))
                             <li class="user_img">
                                 <img style="width:30px;" src="/uploads/{{ $user_list->logo }}">
@@ -150,17 +157,17 @@
                     <li class="birthday">誕生日:{{ $user_list->birthday->format('Y年m月d日') }}</li>
                     <li class="AdmissionDay">入学日:{{ $user_list->AdmissionDay->format('Y年m月d日') }}</li>
                     @foreach($user_list->japanese_language as $japanese_language)
-                        <li class="japanese_language">国語担当教師:{{ $japanese_language->username_kanji }}</li>
+                        <li class="japanese_language">担当国語教師:{{ $japanese_language->username_kanji }}</li>
                     @endforeach
                     @foreach($user_list->math_teacher as $math_teacher)
-                        <li class="math_teacher">数学教師:
+                        <li class="math_teacher">担当数学教師:
                             {{ $math_teacher->username_kanji }}</li>
                     @endforeach
                     @foreach($user_list->userScore as $score)
-                       <li class="userScore">点数:{{ $score->score }}点</li>
+                        <li class="userScore">点数:{{ $score->score }}点</li>
                     @endforeach
 
-                    @if($user_list->admin_role == 7)
+                    @if($user_list->admin_role == 0)
                         <li class="role">権限:国語教師</li>
                     @elseif($user_list->admin_role == 5)
                         <li class="role">権限:数学教師</li>
@@ -174,9 +181,17 @@
         @endforeach
         </div>
         </div>
-
+        @else
+        <div class="item_box">
+            <div class="all_user_list">
+                 <div class="non_post" style="margin-left: 220px;">
+                        該当の検索結果はありません....💬
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
-                <li class="page-item" style="margin-left: 870px;">
+                <li class="page-item" style="margin-left: 770px;">
                     {{ $user_lists->links() }}
                 </li>
 @endsection

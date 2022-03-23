@@ -1,6 +1,6 @@
 .main_content {
-    min-height: 760px;
-
+    min-height: 800px;
+    /* max-width: 99%; */
 }
 .main_nav {
     text-align: center;
@@ -20,9 +20,9 @@
 }
 
 .gender,
-.admin_role,
-.Japanese_language_staff,
-.math_language_staff {
+.admin_role
+
+{
     text-align: center;
     margin-left: -260px;
 }
@@ -31,4 +31,9 @@
 }
 .register-admin-danger {
     margin-left: 40%;
+}
+
+.math_language_staff,
+.Japanese_language_staff {
+    margin-left: 770px;
 }

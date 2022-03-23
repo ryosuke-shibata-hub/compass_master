@@ -14,10 +14,9 @@
         type="text" name="lastname_kanji" value="{{ old('lastname_kanji') }}" placeholder="名">
 
         @if($errors->has('firstname_kanji'))
-        <span class="text-danger register-admin-danger">{{ $errors->first('firstname_kanji') }}</span>
-        @endif
-        @if($errors->has('lastname_kanji'))
-        <span class="text-danger register-admin-danger">{{ $errors->first('lastname_kanji') }}</span>
+        <span class="text-danger">{{ $errors->first('firstname_kanji') }}</span>
+        @elseif($errors->has('lastname_kanji'))
+        <span class="text-danger">{{ $errors->first('lastname_kanji') }}</span>
         @endif
     </div>
 
@@ -30,10 +29,9 @@
         type="text" name="lastname_kana" value="{{ old('lastname_kana') }}" placeholder="メイ">
 
         @if($errors->has('firstname_kana'))
-        <span class="text-danger register-admin-danger">{{ $errors->first('firstname_kana') }}</span>
-        @endif
-        @if($errors->has('lastname_kana'))
-        <span class="text-danger register-admin-danger">{{ $errors->first('lastname_kana') }}</span>
+        <span class="text-danger">{{ $errors->first('firstname_kana') }}</span>
+        @elseif($errors->has('lastname_kana'))
+        <span class="text-danger">{{ $errors->first('lastname_kana') }}</span>
         @endif
     </div>
 
@@ -45,9 +43,14 @@
         type="text" name="birthday_month" value="{{ old('birthday_month') }}" placeholder="月">
         <input class="form-control user_detail_input input_date" style="margin-left:56%;"
         type="text" name="birthday_day" value="{{ old('birthday_day') }}" placeholder="日">
-        {{-- @if($errors->has('username'))
-        <span class="text-danger">{{ $errors->first('username') }}</span>
-        @endif --}}
+
+        @if($errors->has('birthday_year'))
+        <span class="text-danger">{{ $errors->first('birthday_year') }}</span>
+        @elseif($errors->has('birthday_month'))
+        <span class="text-danger">{{ $errors->first('birthday_month') }}</span>
+        @elseif($errors->has('birthday_day'))
+        <span class="text-danger">{{ $errors->first('birthday_day') }}</span>
+        @endif
     </div>
 
     <div class="Admission_date pt-5">
@@ -58,9 +61,14 @@
         type="text" name="Admission_month" value="{{ old('Admission_month') }}" placeholder="月">
         <input class="form-control user_detail_input input_date" style="margin-left:56%;"
         type="text" name="Admission_day" value="{{ old('Admission_day') }}" placeholder="日">
-        {{-- @if($errors->has('username'))
-        <span class="text-danger">{{ $errors->first('username') }}</span>
-        @endif --}}
+
+        @if($errors->has('birthday_year'))
+        <span class="text-danger">{{ $errors->first('Admission_year') }}</span>
+        @elseif($errors->has('Admission_month'))
+        <span class="text-danger">{{ $errors->first('Admission_month') }}</span>
+        @elseif($errors->has('Admission_day'))
+        <span class="text-danger">{{ $errors->first('Admission_day') }}</span>
+        @endif
     </div>
 
     <div class="gender pt-5">
@@ -70,6 +78,10 @@
         <label class="form-label">女性</label>
         <input class=""
         type="radio" name="gender" value="1">
+        <br>
+        @if($errors->has('gender'))
+        <span class="text-danger" style="margin-left: 5%;">{{ $errors->first('gender') }}</span>
+        @endif
     </div>
 
     <div class="email pt-5">
@@ -104,23 +116,35 @@
         <input type="radio" value="5" name="role">
          <label class="form-label">生徒</label>
         <input type="radio" value="10" name="role">
-   </div>
+        <br>
 
+        @if($errors->has('role'))
+        <span class="text-danger" style="margin-left: -5%;">{{ $errors->first('role') }}</span>
+        @endif
+   </div>
     <div class="Japanese_language_staff pt-3">
         <p>国語担当者</p>
-        <label class="form-label" style="margin-left: 80px">国語教師1</label>
-        <input type="radio" value="" name="role">
-        <label class="form-label">国語教師2</label>
-        <input type="radio" value="" name="role">
-   </div>
+        @foreach($japanies_teacher as $japanies_teacher)
+                    <label class="japanese_language_select">
+                        <li class="japanese_language">
+                            {{ $japanies_teacher->username_kanji }}
+                        </li>
+                    </label>
+                    <input type="radio" value="{{ $japanies_teacher->id }}" name="Japanese_language_staff_role">
+        @endforeach
+    </div>
 
-   <div class="math_language_staff pt-3">
+    <div class="math_language_staff pt-3">
         <p>数学担当者</p>
-        <label class="form-label" style="margin-left: 80px">数学教師1</label>
-        <input type="radio" value="" name="role">
-         <label class="form-label">数学教師2</label>
-        <input type="radio" value="" name="role">
-   </div>
+        @foreach($math_teacher as $math_teacher)
+            <label class="math_teacher_select">
+                <li class="math_teacher">
+                    {{ $math_teacher->username_kanji }}
+                </li>
+            </label>
+            <input type="radio" value="{{ $math_teacher->id }}" name="math_language_staff_role">
+        @endforeach
+    </div>
 
    <div class="info_btn" style="margin-left:40%;">
         <a href="{{ route('Administrator' )}}" style="margin-right:30%;" type="button" class="btn btn-succes mt-5">戻る</a>

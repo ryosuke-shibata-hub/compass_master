@@ -84,12 +84,12 @@
                     <ul class="item_contents">
                         @if(!empty($post_list->user->logo))
                             <li class="item_post_username">
-                            <img style="width:20px;" src="/uploads/{{ $post_list->user->logo }}">
+                            <img style="width:15px;" src="/uploads/{{ $post_list->user->logo }}">
                             {{ $post_list->user->username_kanji }}さんが
                             </li>
                         @else
                             <li class="item_post_username">
-                            <img style="width:20px;" src="/uploads/user-regular-2.svg">
+                            <img style="width:15px;" src="/uploads/user-regular-2.svg">
                             {{ $post_list->user->username_kanji }}さんが
                             </li>
                         @endif
@@ -115,7 +115,7 @@
                 @endforeach
             </div>
             <div class="paginate">
-                <li class="page-item" style="margin-left: px;">
+                <li class="page-item" style="margin-left: 100px;">
                     {{ $posts_lists->links() }}
                 </li>
             </div>

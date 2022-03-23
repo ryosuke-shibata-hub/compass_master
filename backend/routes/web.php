@@ -49,8 +49,16 @@ Route::group(['middleware' => ['auth']],function() {
                 ->name('Administrator');
                 Route::get('admin/create/new/user','UserAdminController@create')
                 ->name('user_create');
-                 Route::post('admin/create/new/user/register','UserAdminController@store')
+                Route::post('admin/create/new/user/register','UserAdminController@store')
                 ->name('user_create_register');
+                Route::get('admin/user/show','UserAdminController@addmin_user_edit')
+                ->name('Admin_user_show');
+                Route::get('admin/user/edit/{id}','UserAdminController@edit')
+                ->name('Admin_user_edit');
+                Route::resource('admin_user','UserAdminController',['only'=>['edit','destroy','update']]);
+                Route::get('/csv_download','UserAdminController@csv_download')
+                ->name('csv_download');
+
             });
         });
 
@@ -75,6 +83,8 @@ Route::group(['middleware' => ['can:user']],function() {
             Route::get('/user/all_user_list','UserController@show')->name('all_user_list');
 
             Route::namespace('Post')->group(function() {
+                //トップページ
+                Route::GET('/top','PostsController@top')->name('top_main');
                 //一覧表示
                 Route::get('/post/index/{category?}','PostsController@index')
                 ->name('userPostIndex');
@@ -89,6 +99,7 @@ Route::group(['middleware' => ['can:user']],function() {
 
                 Route::post('/post_comment/{post_comment}','PostCommentsController@store')->name('post_comment_store');
                 Route::resource('post_comment','PostCommentsController',['only'=>['edit','update','destroy']]);
+                Route::resource('comment_replies','PostCommentRepliesController',['only'=>['edit']]);
 
                 Route::post('/post_favorite','PostFavoritesController@postFavorite')
                 ->name('post_favorite');

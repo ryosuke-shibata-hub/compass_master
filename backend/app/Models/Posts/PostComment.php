@@ -33,6 +33,10 @@ class PostComment extends Model
         return $this->hasMany(PostCommentFavorite::Class);
     }
 
+    public function CommentsReplies() {
+        return $this->hasMany('App\Models\Posts\CommentReplies','comment_id');
+    }
+
     public function postCommentFavoriteIsExistence()
     {
         return PostCommentFavorite::where('user_id',Auth::user()->id)->where('post_comment_id',$this->id)
@@ -42,12 +46,6 @@ class PostComment extends Model
     public function comment_favorite() {
        return $this->hasMany(PostCommentFavorite::class);
     }
-
-    // public function userCommentFavoriteRelation() {
-    //     return $this->belongsToMany('App\Models\Users\User','post_comment_favorites',
-    //     'post_comment_id','user_id');
-    // }
-
 
     //コメント機能
     public static function comment_store($request,$id) {
@@ -70,4 +68,15 @@ class PostComment extends Model
         return $post_comment_detail->fill($data)->save();
     }
 
+    // public static function commentQuery() {
+
+    //     return self::with([
+    //         'CommentsReplies',
+    //     ]);
+
+    // }
+
+    // public static function commentDetail() {
+    //     return self::commentQuery()->get();
+    // }
 }

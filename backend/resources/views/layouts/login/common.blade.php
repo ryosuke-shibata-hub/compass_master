@@ -21,11 +21,11 @@
 <body>
 
  @yield('header')
-  <div class="contents">
-   <div class="main">
-          <div class="side_menu">
-            <div class="side_nav_bar">
-                <ul>
+        <div class="collapes navbar-collapes" id="app-navbar-collapse">
+            <div class="openbtn-side"><span></span><span></span><span></span></div>
+                <nav id="g-nav">
+                <div id="nav-bar-right">
+            <ul class="nav navbar-nav navbar-left">
                     <li class="top_page pt-5 nav_list">
                         <a href="/top">トップページ</a>
                     </li>
@@ -35,15 +35,18 @@
                     <li class="user_list pt-5 nav_list">
                         <a href="/post/index">投稿一覧</a>
                     </li>
+                    <li class="user_list pt-5 nav_list">
+                        <a href="/post/index">質問</a>
+                    </li>
                     @can('admin')
-                    <p class="admin_page">
                     <li class="user_list pt-5 nav_list">
                         <a href="/admin/index">管理者ページ</a>
                     </li>
                     @endcan
-                </ul>
+            </ul>
             </div>
-        </div>
+            </nav>
+            </div>
      @yield('contents')
 
    </div>

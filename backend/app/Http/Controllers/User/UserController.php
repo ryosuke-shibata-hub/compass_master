@@ -21,12 +21,9 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-
-
-        // dd($request);
         return view('User.all_user_list')
-        ->with('user_lists',User::userList($request));
-        // ->with('age',$age);
+        ->with('user_lists',User::userList($request))
+        ->with('search_list',User::search_user_list());
     }
 
     public function edit() {

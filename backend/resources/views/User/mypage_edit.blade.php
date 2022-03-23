@@ -30,6 +30,10 @@
         <li class="password pt-5">パスワード変更</li>
         <input type="password" name="password" style="">
         <br>
+        <br>
+        <li class="password">パスワード確認</li>
+        <input type="password" name="password_confirmed" style="">
+        <br>
         <button class="mt-5 btn btn-link" type="submit"><i class="fas fa-user-edit"></i></button>
     </div>
 

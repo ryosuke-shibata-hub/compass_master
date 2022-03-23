@@ -1,5 +1,6 @@
 .item_box {
     width: 700px;
+    min-height: 750px;
     display: inline-block;
     margin-left: 20%;
     margin-right: 20%;

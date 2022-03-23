@@ -3,7 +3,6 @@
 @include('layouts.login.header')
 @section('contents')
 
-<a type="button" class="btn btn-info back_btn" href="{{ route('userPostIndex') }}">トップページへ</a>
 <div class="main_content">
     <div class="main_nav pb-5">
         <div class="create_new_user">
@@ -12,7 +11,7 @@
         </a>
     </div>
     <div class="update_user pt-5">
-        <a href="update/user" class="btn btn-primary" type="buttom">
+        <a href="user/show" class="btn btn-primary" type="buttom">
             ユーザー情報の編集
         </a>
     </div>

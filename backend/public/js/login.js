@@ -1,5 +1,17 @@
 $(function () {
 
+
+    $(".openbtn-side").click(function () {
+        $(this).toggleClass('active');
+        $("#g-nav").toggleClass('panelactive');
+    });
+
+    $("#g-nav a").click(function () {
+        $(".opentbtn-side").removeClass('active');
+        $("#g-nav").removeClass('panelactive');
+    });
+
+
     $('.open-btn').click(function () {
         console.log('ok');
     $('#overlay, .modal_window').fadeIn();

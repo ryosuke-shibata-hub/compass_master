@@ -3,7 +3,10 @@
 @include('layouts.login.header')
 @section('contents')
 
-  <a type="button" class="btn btn-info back_btn" href="{{ route('userPostIndex') }}">トップページへ</a>
+  <a type="button" class="btn btn-info back_btn" href="{{ route('top_main') }}">トップページへ</a>
+  <br>
+  <a type="button" class="btn btn-success back_btn" href="{{ route('userPostIndex') }}"
+    style="margin-top:20px;">投稿一覧へ</a>
 </p>
 <p>
   @if(Auth::user()->contributorAndAdmin($posts_detail->user_id))
@@ -12,7 +15,7 @@
 </p>
 
 <div class="item_detail">
-    <ul class="item_detail_contents">
+    <ul class="item_detail_contents mt-5">
   <li>投稿者:{{ $posts_detail->user->username_kanji }}</li>
   <li class="item_detail_date">投稿日時:{{ $posts_detail->event_at->format('Y年m月d日') }}</li>
   <li class="item_detail_view">閲覧数:{{ $posts_detail->Actionlog->count() }}view</li>
@@ -69,7 +72,23 @@
         <a href="{{ route('post_comment.edit',[$postComment->id]) }}">　
         <i class="fas fa-pen"></i></a>
   @endif
+  @foreach($postComment->CommentsReplies as $comment_replies)
+  <i class="fas fa-share replies_icon"></i>
+    <div class="comment_replies">
+        <li class="replies_username">{{ $comment_replies->user->username_kanji }}</li>
+        <li class="replies_date">{{ $comment_replies->event_at->format('Y年m月d日') }}にコメントしました。</li>
+        <li class="replies">{{ $comment_replies->comment_replies }}</li>
+        @if (Auth::user()->contributorAndAdmin($comment_replies->user_id))
+        <li class="replies_edit">
+            <a href="{{ route('comment_replies.edit',[$comment_replies->id]) }}"><i class="fas fa-pen"></i>
+            </a>
+        </li>
+  @endif
+    </div>
+  @endforeach
   </div>
+
+
 @endforeach
 
 

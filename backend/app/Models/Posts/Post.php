@@ -51,6 +51,10 @@ public function user(){
         return $this->belongsToMany('App\Models\Users\User','post_favorites','post_id'
         ,'user_id');
     }
+    public function CommentsReplies()
+    {
+        return $this->hasMany('App\Models\Posts\CommentReplies');
+    }
 
 //N+1
     public static function postQuery(){
@@ -58,7 +62,8 @@ public function user(){
             'user',
             'postSubCategory',
             'postComments.user',
-            // 'postComments.userCommentFavoriteRelation',
+            'postComments.CommentsReplies',
+            'postComments.user',
             'Actionlog',
             'userPostFavoriteRelation',
         ]);
@@ -153,21 +158,17 @@ public function user(){
 
         return is_null($posts_detail->userPostFavoriteRelation->find(Auth::id()));
     }
+//閲覧数順
+    // public static function by_number_of_view() {
 
-    // public static function postCommentFavoriteAndUnFavorite($comment_id,$comment_favorite_id) {
+    //     $posts_lists = self::postQuery();
 
-    //     $posts_detail = self::findOrFail($comment_id);
-
-    //     if($comment_favorite_id) {
-    //         return $posts_detail->userCommentFavoriteRelation()->detach(Auth::id());
-    //     }else{
-    //         return $posts_detail->userCommentFavoriteRelation()->attach(Auth::id());
-    //     }
-    // }
-
-    // public static function postCommentFavoriteIsExistence($posts_detail) {
-
-    //     return is_null($posts_detail->postComments->find(Auth::id()));
+    //     $posts_lists = $posts_lists
+    //     ->orwhereIn('id',function($query) {
+    //         $query->from('action_logs')
+    //         ->select('post_id')
+    //         ->count();
+    //     });
     // }
 
 }

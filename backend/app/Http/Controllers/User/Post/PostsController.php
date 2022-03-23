@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Posts\PostMainCategory;
 use App\Models\Posts\PostComment;
+use App\Models\Posts\CommentReplies;
 use App\Models\Posts\Post;
 use App\Models\Users\User;
 use Log;
@@ -14,7 +15,29 @@ use Auth;
 
 class PostsController extends Controller
 {
-    //
+//トップページ
+    public function top() {
+
+        $view_count = POST::withCount('Actionlog')
+        ->orderBy('actionlog_count','desc')
+        ->paginate(3);
+
+        $post_favorite_count = POST::withCount('userPostFavoriteRelation')
+        ->orderBy('user_post_favorite_relation_count','desc')
+        ->paginate(3);
+
+        $post_comment_count = POST::withCount('postComments')
+        ->orderBy('post_comments_count','desc')
+        ->paginate(3);
+
+        // dd($post_comment_count);
+        return view('User.toppage')
+        ->with('view_count',$view_count)
+        ->with('post_favorite_count',$post_favorite_count)
+        ->with('post_comment_count',$post_comment_count);
+    }
+
+
 //投稿ページ
     public function create() {
 
@@ -32,6 +55,7 @@ class PostsController extends Controller
 //投稿一覧画面
      public function index(Request $request,$subcategory_id = null) {
 
+        // dd(Post::posts_lists($request,$subcategory_id));
         return view('User.userPost')
         ->with('posts_lists',Post::posts_lists($request,$subcategory_id))
         ->with('postMainCategoryList',PostMainCategory::postMainCategoryList());
@@ -40,7 +64,7 @@ class PostsController extends Controller
     public function show($id) {
         $postComment = PostComment::withCount('comment_favorite')
         ->where('post_id',$id)
-        ->orderBy('updated_at', 'desc')->paginate(10);
+        ->orderBy('updated_at', 'desc')->get();
 
         return view('User.show')
         ->with('posts_detail',Post::postDetail($id))

@@ -10,7 +10,7 @@
     <Form action="{{ route('mypage_update') }}" method="post"
         enctype="multipart/form-data">
     @csrf
-    <div class="mypage_box">
+    <div class="mypage_box" style="margin-left: -70px;">
         <label class="file_upload">
             <input type="file" name="logo" style="display:none"
             value="{{ Auth::user()->logo }}">
@@ -27,14 +27,17 @@
         <li class="email pt-5">登録メールアドレス</li>
         <input type="email" name="email" value="{{ Auth::user()->email }}">
         <br>
-        <li class="password pt-5">パスワード変更</li>
-        <input type="password" name="password" style="">
-        <br>
-        <br>
-        <li class="password">パスワード確認</li>
-        <input type="password" name="password_confirmed" style="">
-        <br>
-        <button class="mt-5 btn btn-link" type="submit"><i class="fas fa-user-edit"></i></button>
+        @if(Auth::user()->admin_role == 15)
+            <li class="password pt-5">パスワード変更</li>
+            <input type="password" name="password" style="">
+            <br>
+            <br>
+            <li class="password">パスワード確認</li>
+            <input type="password" name="password_confirmed" style="">
+            <br>
+
+        @endif
+        <button class="mt-5 btn btn-link" type="submit" style="font-size: 30px;"><i class="fas fa-user-edit"></i></button>
     </div>
 
     </Form>

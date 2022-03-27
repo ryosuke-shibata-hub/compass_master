@@ -423,3 +423,25 @@ a.comment_favorite {
     margin-left: 420px;
     margin-top: 0px;
 }
+
+.replies_form {
+    padding-top: 30px;
+}
+.replies_text_form {
+    border: 1px solid #a9a9a9;
+    border-radius: 0.3rem;
+    width: 600px;
+    height: 40px;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+}
+
+.replies_button {
+    font-size: 1.5rem;
+    margin-left: 5px;
+    margin-top: -10px;
+    background-color: #ffffff;
+    border: none;
+}

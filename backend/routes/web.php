@@ -99,7 +99,10 @@ Route::group(['middleware' => ['can:user']],function() {
 
                 Route::post('/post_comment/{post_comment}','PostCommentsController@store')->name('post_comment_store');
                 Route::resource('post_comment','PostCommentsController',['only'=>['edit','update','destroy']]);
-                Route::resource('comment_replies','PostCommentRepliesController',['only'=>['edit']]);
+
+                Route::post('replies/{comment_replies}','PostCommentRepliesController@store')
+                ->name('comment_replies');
+                Route::resource('comment_replies','PostCommentRepliesController',['only'=>['edit','destroy']]);
 
                 Route::post('/post_favorite','PostFavoritesController@postFavorite')
                 ->name('post_favorite');

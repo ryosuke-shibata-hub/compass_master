@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Users\User;
 use App\Models\Users\CreateUserPersonChargesTable;
 use App\Http\Requests\EditAdministratorPrivileges;
+use App\Http\Requests\EditUserProfile;
 
 class UserAdminController extends Controller
 {
@@ -33,7 +34,6 @@ class UserAdminController extends Controller
 //管理者ユーザー登録
     public function store(EditAdministratorPrivileges $request) {
 
-        dd($request);
         $birthday_year = $request->birthday_year;
         $birthday_month = $request->birthday_month;
         $birthday_day = $request->birthday_day;
@@ -106,7 +106,6 @@ class UserAdminController extends Controller
     }
     public function update(Request $request,$id) {
 
-        // dd($request);
     if($file = $request->logo) {
         $fileName = time().'.'.$file->getClientOriginalExtension();
         $target_path = public_path('uploads/');

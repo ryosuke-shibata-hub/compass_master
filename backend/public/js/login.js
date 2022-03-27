@@ -1,5 +1,12 @@
 $(function () {
 
+    $('.replies_edit').click(function () {
+        $('.replies_edit_modal').fadeIn();
+    });
+    $('.close_btn,#modalBg').click(function () {
+        $('.replies_edit_modal').fadeOut();
+    });
+
 
     $(".openbtn-side").click(function () {
         $(this).toggleClass('active');
@@ -13,7 +20,7 @@ $(function () {
 
 
     $('.open-btn').click(function () {
-        console.log('ok');
+
     $('#overlay, .modal_window').fadeIn();
     $('html').css('overflow-y','hidden');
     });

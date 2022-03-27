@@ -68,15 +68,4 @@ class PostComment extends Model
         return $post_comment_detail->fill($data)->save();
     }
 
-    // public static function commentQuery() {
-
-    //     return self::with([
-    //         'CommentsReplies',
-    //     ]);
-
-    // }
-
-    // public static function commentDetail() {
-    //     return self::commentQuery()->get();
-    // }
 }

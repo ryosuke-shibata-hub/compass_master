@@ -80,12 +80,47 @@
         <li class="replies">{{ $comment_replies->comment_replies }}</li>
         @if (Auth::user()->contributorAndAdmin($comment_replies->user_id))
         <li class="replies_edit">
-            <a href="{{ route('comment_replies.edit',[$comment_replies->id]) }}"><i class="fas fa-pen"></i>
-            </a>
+            <i class="fas fa-pen replies_edit_btn" id='open_replies_edit'></i>
         </li>
-  @endif
+        <form action="{{ route('comment_replies.destroy',[$comment_replies]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn-dell replies_dell">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+
+        </form>
+
+        @endif
     </div>
+    <section id='replies_edit_modal' class="replies_edit_modal">
+        {{-- <div id="modalBg" class="modalBg"></div> --}}
+
+        <div class="edit_window_wrapper">
+            <i class="far fa-times-circle close_btn" id="close_btn"></i>
+            <div class="edit_contents">
+                <form action="{{ route('comment_replies',[$postComment->id]) }}" method="POST">
+                @csrf
+                <input type="text" class="replies_edit_form" placeholder="{{ $comment_replies->comment_replies }}">
+                <button class="edit_replies_button">
+                    <i class="far fa-comments"></i>
+                </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
   @endforeach
+  <form action="{{ route('comment_replies',[$postComment->id]) }}" method="POST">
+    @csrf
+    <div class="replies_form">
+      <input type="text" class="replies_text_form" name="comment_replies" placeholder="コメントする">
+      <button class="replies_button">
+          <i class="far fa-comments"></i>
+      </button>
+  </div>
+  </form>
+
   </div>
 
 

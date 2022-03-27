@@ -3,6 +3,8 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use Carbon\Carbon;
 
 class CommentReplies extends Model
 {
@@ -11,6 +13,9 @@ class CommentReplies extends Model
 
     protected $dates = [
        'event_at',
+       'updated_at',
+       'created_at',
+       'deleted_at',
     ];
 
     protected $fillable = [
@@ -19,6 +24,7 @@ class CommentReplies extends Model
         'delete_user_id',
         'update_user_id',
         'comment_replies',
+        'event_at',
     ];
 
     public function user(){
@@ -29,15 +35,17 @@ class CommentReplies extends Model
     public function postComments() {
         return $this->belongsTo('App\Models\Posts\PostComment');
     }
-    public static function commentQuery() {
 
-        return self::with([
-            'user',
-        ]);
+    public static function create_replies($request,$id) {
 
-    }
+        $replies = new CommentReplies();
 
-    public static function commentDetail() {
-        return self::commentQuery()->get();
+        $data['user_id'] = Auth::user()->id;
+        $data['comment_id'] = $id;
+        $data['comment_replies'] = $request->comment_replies;
+        $data['event_at'] = carbon::now();
+
+        $replies->fill($data)->save();
+
     }
 }

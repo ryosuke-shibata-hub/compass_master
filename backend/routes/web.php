@@ -96,6 +96,10 @@ Route::group(['middleware' => ['can:user']],function() {
                 Route::get('/post/{post}','PostsController@show')
                 ->name('post_show');
                  });
+                Route::group(['middleware' => ['question_show']],function() {
+                    Route::get('/question/{question}','QuestionBoxController@show')
+                    ->name('question_show');
+                });
 
                 Route::post('/post_comment/{post_comment}','PostCommentsController@store')->name('post_comment_store');
                 Route::resource('post_comment','PostCommentsController',['only'=>['edit','update','destroy']]);
@@ -109,6 +113,11 @@ Route::group(['middleware' => ['can:user']],function() {
 
                 Route::post('/post_comment_favorite','PostCommentFavoritesController@postCommentFavorite')
                 ->name('post_comment_favorite');
+                });
+
+                Route::namespace('QuestionBox')->group(function() {
+                    Route::get('/QuestionBox','QuestionBoxController@index')
+                    ->name('question_index');
                 });
             });
         });

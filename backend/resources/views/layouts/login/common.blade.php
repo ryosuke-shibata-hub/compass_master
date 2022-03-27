@@ -36,7 +36,7 @@
                         <a href="/post/index">投稿一覧</a>
                     </li>
                     <li class="user_list pt-5 nav_list">
-                        <a href="/post/index">質問</a>
+                        <a href="/QuestionBox">質問</a>
                     </li>
                     @can('admin')
                     <li class="user_list pt-5 nav_list">

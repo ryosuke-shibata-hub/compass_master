@@ -20,4 +20,12 @@ class QuestionTagCategory extends Model
     public function question_box_tag() {
         return $this->hasMany('App\Models\Posts\QuestionBox');
     }
+
+    public static function tag_list() {
+
+        $tag_list = QuestionTagCategory::select('question_tag_categories.*')
+        ->get();
+
+        return $tag_list;
+    }
 }

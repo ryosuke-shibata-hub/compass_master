@@ -12,13 +12,15 @@ class QuestionTagCategory extends Model
         'created_at',
     ];
     protected $fillable = [
+        'id',
         'question_tag',
         'created_at',
         'updated_at',
     ];
 
+
     public function question_box_tag() {
-        return $this->hasMany('App\Models\Posts\QuestionBox');
+        return $this->hasMany('App\Models\Posts\QuestionBox','id');
     }
 
     public static function tag_list() {

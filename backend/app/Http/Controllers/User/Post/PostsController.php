@@ -54,7 +54,7 @@ class PostsController extends Controller
     }
 //投稿一覧画面
      public function index(Request $request,$subcategory_id = null) {
-
+// dd($request);
         // dd(Post::posts_lists($request,$subcategory_id));
         return view('User.userPost')
         ->with('posts_lists',Post::posts_lists($request,$subcategory_id))

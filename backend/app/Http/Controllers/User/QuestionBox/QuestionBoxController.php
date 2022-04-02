@@ -27,8 +27,15 @@ class QuestionBoxController extends Controller
         ->with('question_detail',QuestionBox::questionDetail($id));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+
         return view('QuestionBox.question_create');
+    }
+    public function store(Request $request)
+    {
+        // dd($request);
+        return redirect()->back();
+
     }
 }

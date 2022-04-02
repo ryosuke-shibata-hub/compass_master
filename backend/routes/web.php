@@ -123,6 +123,8 @@ Route::group(['middleware' => ['can:user']],function() {
 
                     Route::get('/question_post','QuestionBoxController@create')
                     ->name('create_question');
+                    Route::post('/question_post/store','QuestionBoxController@store')
+                    ->name('store_question');
                 });
             });
         });

@@ -141,3 +141,18 @@
 .question_contents {
     padding-top: 50px;
 }
+.question_text {
+    padding-top: 50px;
+}
+.question_text_area {
+    margin-top: 50px;
+    min-height: 800px;
+}
+.question_nav_btn {
+    display: flex;
+    margin-left: 47%;
+    margin-bottom: 10px;
+}
+.text_area {
+    pointer-events: none;
+}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Posts\QuestionBox;
 use App\Models\Posts\QuestionTagCategory;
+use Illuminate\Mail\Markdown;
 
 class QuestionBoxController extends Controller
 {
@@ -22,20 +23,27 @@ class QuestionBoxController extends Controller
 
     public function show($id)
     {
-        // dd($id);
+        $question_detail = QuestionBox::questionDetail($id);
+        $markdown = Markdown::parse(e($question_detail->question_detail));
+
         return view('QuestionBox.question_detail')
-        ->with('question_detail',QuestionBox::questionDetail($id));
+        ->with('question_detail',QuestionBox::questionDetail($id))
+        ->with('markdown',$markdown);
     }
 
     public function create(Request $request)
     {
 
-        return view('QuestionBox.question_create');
+        // dd($request);
+        return view('QuestionBox.question_create')
+        ->with('tag_list',QuestionTagCategory::tag_list());
     }
     public function store(Request $request)
     {
+
+        QuestionBox::create_new_question($request);
         // dd($request);
-        return redirect()->back();
+        return redirect()->route('question_index');
 
     }
 }

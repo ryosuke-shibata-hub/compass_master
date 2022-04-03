@@ -3,6 +3,8 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use Carbon\Carbon;
 
 class QuestionBox extends Model
 {
@@ -22,7 +24,7 @@ class QuestionBox extends Model
         'title',
         'question_detail',
         'tag_id',
-        'Question_status',
+        'question_status',
         'event_at',
     ];
 
@@ -88,5 +90,19 @@ class QuestionBox extends Model
 
 
         return $question_lists->get();
+    }
+
+    public static function create_new_question($request)
+    {
+        $question = new QuestionBox;
+        $data['title'] = $request->title;
+        $data['question_detail'] = $request->name;
+        $data['user_id'] = Auth::user()->id;
+        $data['event_at'] = carbon::now();
+        $data['tag_id'] = $request->select_tag_id;
+        $data['question_status'] = 0;
+
+
+        $question->fill($data)->save();
     }
 }

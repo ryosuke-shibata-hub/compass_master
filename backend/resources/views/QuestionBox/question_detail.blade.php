@@ -2,6 +2,9 @@
 @section('title', '質問')
 @include('layouts.login.header')
 @section('contents')
+<style >
+    pre {background-color: #232323; color: #ffffff; padding: 5px;}
+</style>
 <div class="question_show_detail">
     <div class="question_main_box">
         <div class="question_box_detail">
@@ -43,7 +46,7 @@
             </div>
             <div class="question_contents">
                 <div class="question_contents_item">
-                    {{ $question_detail->question_detail }}
+                    {{ $markdown }}
                 </div>
             </div>
 

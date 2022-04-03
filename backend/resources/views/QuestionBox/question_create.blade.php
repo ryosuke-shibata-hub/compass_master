@@ -7,6 +7,18 @@
     <div class="input_text_area">
         <form action="{{ route('store_question') }}" method="POST">
             @csrf
+            <div class="question_title_edit">
+                <select class="select_tag_list" id="select_tag_id" name="select_tag_id">
+                    <option value="">タグ選択</option>
+                    @foreach($tag_list as $tag_lists)
+                        <option  value="{{ $tag_lists->id }}"
+                            data-tag_id="{{ $tag_lists->id }}">
+                            {{ $tag_lists->question_tag }}
+                        </option>
+                    @endforeach
+                </select>
+                <input class='question_title_input' type="text" placeholder='タイトル' name="title">
+            </div>
             <textarea class="text_area" id="body" name="name" rows="8" cols="40">
 ### 解決したいこと
 ここに解決したい内容を記載してく

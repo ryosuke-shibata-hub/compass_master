@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Posts\QuestionBox;
 use App\Models\Posts\QuestionTagCategory;
 use Illuminate\Mail\Markdown;
+use App\Models\Posts\QuestionComment;
 
 class QuestionBoxController extends Controller
 {
@@ -24,11 +25,16 @@ class QuestionBoxController extends Controller
     public function show($id)
     {
         $question_detail = QuestionBox::questionDetail($id);
+        $question_comment_detail = QuestionBox::questionDetail($id)->answer;
+
         $markdown = Markdown::parse(e($question_detail->question_detail));
+        $markdownComment = Markdown::parse(e($question_comment_detail));
+        // dd($markdown);
 
         return view('QuestionBox.question_detail')
         ->with('question_detail',QuestionBox::questionDetail($id))
-        ->with('markdown',$markdown);
+        ->with('markdown',$markdown)
+        ->with('markdownComment',$markdownComment);
     }
 
     public function create(Request $request)

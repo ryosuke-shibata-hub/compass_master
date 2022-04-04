@@ -170,3 +170,14 @@
 .select_tag_list {
     width: 150px;
 }
+.answer_text_box {
+    padding-top: 50%;
+}
+.question_nav {
+    display: flex;
+}
+.question_store_btn {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}

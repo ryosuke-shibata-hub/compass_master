@@ -34,7 +34,7 @@ class QuestionBox extends Model
 
     public function answer()
     {
-        return $this->hasMany('App\Models\Posts\QuestionAnswers');
+        return $this->hasMany('App\Models\Posts\QuestionComment');
     }
 
 

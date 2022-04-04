@@ -51,10 +51,36 @@
             </div>
 
         </div>
+
         <div class="question_box_answer"></div>
-        <div class="answer_text_box"></div>
+
+
+
+        <div class="answer_text_box">
+            <form action="{{ route('question_comment',[$question_detail->id]) }}" method="post">
+                @csrf
+                <div class="comment_box">
+                    <div class="question_nav">
+                        <p class="comment_title">コメントする</p>
+                        <button type="submit" class="btn btn-primary question_store_btn">投稿</button>
+                    </div>
+
+                    <div class="input_area">
+                        <div>
+                            <div class="comment_form_area">
+                                <textarea class="text_area" id="body" name="name" rows="8" cols="40"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+var simplemde = new SimpleMDE({ element: document.getElementById("body") });
+</script>
 @endsection
 @include('layouts.login.footer')

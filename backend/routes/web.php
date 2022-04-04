@@ -125,6 +125,8 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('create_question');
                     Route::post('/question_post/store','QuestionBoxController@store')
                     ->name('store_question');
+                    Route::post('/question/comment/{question_comment}','QuestionCommentController@store')
+                    ->name('question_comment');
                 });
             });
         });

@@ -3,14 +3,19 @@
 @include('layouts.login.header')
 @section('contents')
 <style >
-    pre {background-color: #232323; color: #ffffff; padding: 5px;}
+    pre {background-color: #232323; color: #ffffff; padding: 5px;},
 </style>
+
 <div class="question_show_detail">
     <div class="question_main_box">
         <div class="question_box_detail">
             <div class="question_owner">
                 <a href="" class="">
-                    <img src="/uploads/{{ $question_detail->user->logo }}" class="" style="width: 30px;">
+                    @if(!empty($question_detail->user->logo))
+                            <img src="/uploads/{{ $question_detail->user->logo }}" class="" style="width: 30px;">
+                        @else
+                            <img style="width:30px;" src="/uploads/user-regular-2.svg">
+                        @endif
                     <p class="username">
                         {{ $question_detail->user->username_kanji  }}さんが
                     </p>
@@ -52,16 +57,34 @@
 
         </div>
 
-        <div class="question_box_answer"></div>
+            <div class="question_box_answer">
+                <h2 class="anwer_tag mb-5">{{ $question_detail->answer->count() }}件の回答</h2>
+                @foreach($question_comment_detail as $markdownComment)
+                    <div class="answer_item mt-3">
+                        @if(!empty($markdownComment->user->logo))
+                            <img style="width:20px;"
+                            src="/uploads/{{ $markdownComment->user->logo }}">
+                        @else
+                            <img style="width:20px;" src="/uploads/user-regular-2.svg">
+                        @endif
+                        {{ $markdownComment->user->username_kanji }}さんが
+                        {{ $markdownComment->event_at->format('Y年m月d日') }}に回答しました
+                    @php
+                        $converter = new \cebe\markdown\MarkdownExtra();
+                        $markdownComment->question_comment = $converter->parse($markdownComment->question_comment);
+                    @endphp
+                        <div class="answer_comment">
+                        {!! $markdownComment->question_comment !!}
+                    </div>
 
-
-
+                </div>
+                @endforeach
+            </div>
         <div class="answer_text_box">
             <form action="{{ route('question_comment',[$question_detail->id]) }}" method="post">
                 @csrf
                 <div class="comment_box">
                     <div class="question_nav">
-                        <p class="comment_title">コメントする</p>
                         <button type="submit" class="btn btn-primary question_store_btn">投稿</button>
                     </div>
 
@@ -78,6 +101,7 @@
     </div>
 </div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<link rel="stylesheet" href="{{ asset('/css/simplemde.css') }}">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
 var simplemde = new SimpleMDE({ element: document.getElementById("body") });

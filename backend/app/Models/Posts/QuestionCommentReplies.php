@@ -31,8 +31,18 @@ class QuestionCommentReplies extends Model
 
     public function questionComments()
     {
-        return $this->belongsTo('App\Models\Posts\QuestionComment');
+        return $this->hasMany('App\Models\Posts\QuestionComment');
     }
 
+    // public static function questionCommentDetail() {
+    //     return self::with([
+    //         'questionComments',
+    //         'user',
+    //     ]);
+    // }
 
+    // public static function questionCommentQuery($id)
+    // {
+    //     return self::questionCommentDetail()->findOrFail($id);
+    // }
 }

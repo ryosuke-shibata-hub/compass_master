@@ -258,8 +258,8 @@
 
 .editor-preview pre,
 .editor-preview-side pre {
-    background: #232323;
-    color: #fff;
+    background: #000000;
+    color:#fff;
     padding: 5px;
     margin-bottom: 10px;
 }

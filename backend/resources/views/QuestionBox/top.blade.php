@@ -56,7 +56,7 @@
                         <div class="question_categories_detail">
                             <div class="answer_count">
                                 <span>回答件数</span>
-                                <span class="answer_count_detail">12</span>
+                                <span class="answer_count_detail">{{ $question_lists->answer->count() }}件</span>
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,8 @@ class QuestionCommentController extends Controller
     //
     public function store(Request $request,$id)
     {
-
+        // dd($id);
+        // dd($request);
         QuestionComment::question_comment_store($request,$id);
 
         return redirect()->back();

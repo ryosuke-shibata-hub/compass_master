@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('/css/login/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/login/questionBox.css') }}">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/UI-darkness/jquery-ui.css">
-
     <script src="/js/datepicker-ja.js"></script>
   <title>@yield('title')</title>
 </head>

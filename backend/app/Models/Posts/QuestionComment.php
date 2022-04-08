@@ -19,7 +19,7 @@ class QuestionComment extends Model
 
     protected $fillable = [
         'user_id',
-        'question_id',
+        'question_box_id',
         'delete_user_id',
         'update_user_id',
         'question_comment',
@@ -31,30 +31,30 @@ class QuestionComment extends Model
 
     public function user()
     {
-       return $this->belongsTo('App\Models\Users\User');
+       return $this->belongsTo('App\Models\Users\User','user_id');
     }
 
     public function question_comments()
     {
         return $this->hasMany('App\Models\Posts\QuestionCommentReplies','question_comment_id');
     }
-
-    public static function questionCommentQuery()
+    public static function questionQuery()
     {
         return self::with([
             'user',
-            'question_comments',
         ]);
     }
 
     public static function questionCommentDetail($id)
     {
-        return self::questionCommentQuery()->findOrFail($id);
+        return self::questionQuery()->findOrFail($id);
     }
+
     public static function question_comment_store($request,$id)
     {
+        // dd($id);
         $comment = new QuestionComment();
-        $data['question_id'] = $id;
+        $data['question_box_id'] = $id;
         $data['question_comment'] = $request->name;
         $data['user_id'] = Auth::user()->id;
         $data['event_at'] = carbon::now();

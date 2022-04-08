@@ -73,6 +73,7 @@ end
     </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<link rel="stylesheet" href="{{ asset('/css/simplemde.css') }}">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
 var simplemde = new SimpleMDE({ element: document.getElementById("body") });

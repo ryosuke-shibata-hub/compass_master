@@ -46,7 +46,6 @@
 </div>
 
 @foreach($postComment as $postComment)
-
 <div class="post_comment_list">
   <li class="comment_username">{{ $postComment->user->username_kanji }}さんが</li>
   <li class="comment_date">{{ $postComment->updated_at->format('Y年m月d日') }}にコメントしました。</li>

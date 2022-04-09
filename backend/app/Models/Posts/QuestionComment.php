@@ -34,7 +34,7 @@ class QuestionComment extends Model
        return $this->belongsTo('App\Models\Users\User','user_id');
     }
 
-    public function question_comments()
+    public function question_comment_reply()
     {
         return $this->hasMany('App\Models\Posts\QuestionCommentReplies','question_comment_id');
     }

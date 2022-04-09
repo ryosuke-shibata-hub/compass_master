@@ -9,6 +9,17 @@
 <div class="question_show_detail">
     <div class="question_main_box">
         <div class="question_box_detail">
+            <div class="question_status_select">
+                <form action="{{ route('question_detail_update',[$question_detail->id]) }}" method="POST">
+                    @csrf
+
+                    @if(($question_detail->user_id == Auth::user()->id) && ($question_detail->question_status == 2))
+                        <button type="submit" class="btn btn-danger status_select_btn">解決済みにする</button>
+                    @endif
+
+                </form>
+
+            </div>
             <div class="question_owner">
                 <a href="" class="">
                     @if(!empty($question_detail->user->logo))
@@ -75,9 +86,42 @@
                     @endphp
                         <div class="answer_comment">
                         {!! $markdownComment->question_comment !!}
+                        </div>
+                        @foreach($markdownComment->question_comment_reply as $question_comment_reply)
+                        <div class="question_comment_replies_box">
+                            <div class="question_comment_replies">
+                                <div class="question_comment_reply_user">
+                                    {{ $question_comment_reply->user->username_kanji }}さんが
+                                    {{ $question_comment_reply->event_at->format('Y年m月n日') }}にコメントしました
+                                </div>
+                                @php
+                                    $converter = new \cebe\markdown\MarkdownExtra();
+                                    $question_comment_reply->comment_replies = $converter->parse($question_comment_reply->comment_replies);
+                                @endphp
+                                <div class="question_comment_replies_detail">
+                                    {!! $question_comment_reply->comment_replies !!}
+                                </div>
+                            </div>
+                        </div>
+
+                        @endforeach
+
+                        <form action="{{ route('question_replies_store',[$markdownComment->id]) }}"
+                                method="POST">
+                                @csrf
+                        <div class="question_replies_box">
+                            <div class="question_replies_input">
+                                <textarea class="question_replies"
+                                name="question_reply" placeholder="回答にコメントする"></textarea>
+                            </div>
+                                <button type="submit" class="question_replies_store_btn">
+                                    <i class="fas fa-comment-dots"></i>
+                                </button>
+                            </form>
+
+                        </div>
                     </div>
 
-                </div>
                 @endforeach
             </div>
         <div class="answer_text_box">

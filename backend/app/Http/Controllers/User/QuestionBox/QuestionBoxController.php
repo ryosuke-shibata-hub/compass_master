@@ -9,7 +9,7 @@ use App\Models\Posts\QuestionTagCategory;
 use Illuminate\Mail\Markdown;
 use App\Models\Posts\QuestionComment;
 use Illuminate\Support\Facades\DB;
-// use App\Support\Markdown;
+use App\Models\Users\User;
 
 class QuestionBoxController extends Controller
 {
@@ -27,15 +27,7 @@ class QuestionBoxController extends Controller
     {
 
         $question_detail = QuestionBox::questionDetail($id);
-        $dd = $question_detail->answer;
-
-        // $question_detail_comment = DB::table('question_comments')
-        // ->where('question_comments.question_box_id',$id)
-        // ->select('question_comment')
-        // ->first();
-
-        // $markdown_comment = Markdown::parse($question_detail_comment->question_comment);
-
+// dd($question_detail);
         $question_comment_detail = QuestionComment::where('question_box_id',$id)
         ->orderBy('event_at','desc')
         ->get();
@@ -47,23 +39,30 @@ class QuestionBoxController extends Controller
         ->with('question_detail',QuestionBox::questionDetail($id))
         ->with('markdown',$markdown)
         ->with('question_comment_detail',$question_comment_detail);
-        // ->with('markdown_comment',$markdown_comment);
     }
 
     public function create(Request $request)
     {
 
-        // dd($request);
         return view('QuestionBox.question_create')
         ->with('tag_list',QuestionTagCategory::tag_list());
     }
     public function store(Request $request)
     {
 
-        // dd($request);
         QuestionBox::create_new_question($request);
-        // dd($request);
         return redirect()->route('question_index');
 
+    }
+    public function update(Request $request,$id)
+    {
+
+        $question_update = QuestionBox::questionDetail($id);
+
+        if (User::contributorAndAdmin($question_update->user_id)) {
+            $question_update->question_update($question_update);
+            return redirect()->back();
+        }
+        return \App::abort(403,'unauthorized action.');
     }
 }

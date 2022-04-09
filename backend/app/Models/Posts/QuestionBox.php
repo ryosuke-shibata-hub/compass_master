@@ -36,11 +36,13 @@ class QuestionBox extends Model
     {
         return $this->hasMany('App\Models\Posts\QuestionComment');
     }
-
-
     public function questionTagCategory()
     {
         return $this->belongsTo('App\Models\Posts\QuestionTagCategory','tag_id');
+    }
+    public function question_comment_reply()
+    {
+        return $this->hasMany('App\Models\Posts\QuestionCommentReplies');
     }
 
     public static function questionBoxQuery()
@@ -49,6 +51,7 @@ class QuestionBox extends Model
             'user',
             'questionTagCategory',
             'answer',
+            'answer.question_comment_reply',
         ]);
     }
 
@@ -63,7 +66,8 @@ class QuestionBox extends Model
         $search_tag = $request->tag_id;
         $reset = $request->serach_reset;
         $question_keyword = $request->question_keyword;
-
+        $question_status = $request->question_Status;
+// dd($question_status);
 
         if ($reset) {
             $question_lists = self::questionBoxQuery();
@@ -87,7 +91,10 @@ class QuestionBox extends Model
                 ->where('tag_id',$search_tag);
             });
         }
-
+        if($question_status) {
+            $question_lists = $question_lists
+            ->where('question_status',$question_status);
+        }
 
         return $question_lists->get();
     }
@@ -104,5 +111,15 @@ class QuestionBox extends Model
 
 
         $question->fill($data)->save();
+    }
+
+    public static function question_update($question_update)
+    {
+
+        $data['update_at'] = carbon::now();
+        $data['question_status'] = 1;
+        $data['update_user_id'] = Auth::user()->id;
+
+        return $question_update->fill($data)->save();
     }
 }

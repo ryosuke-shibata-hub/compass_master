@@ -120,6 +120,8 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('question_index');
                     Route::get('/question/detail/{question}','QuestionBoxController@show')
                     ->name('question_detail');
+                    Route::post('/question/detail/update/{question}','QuestionBoxController@update')
+                    ->name('question_detail_update');
 
                     Route::get('/question_post','QuestionBoxController@create')
                     ->name('create_question');
@@ -127,6 +129,8 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('store_question');
                     Route::post('/question/comment/{question_comment}','QuestionCommentController@store')
                     ->name('question_comment');
+                    Route::post('/question/comment/replies/{question_comment_id}','QuestionBoxRepliesController@store')
+                    ->name('question_replies_store');
                 });
             });
         });

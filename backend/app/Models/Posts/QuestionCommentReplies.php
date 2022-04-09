@@ -3,6 +3,8 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use Carbon\Carbon;
 
 class QuestionCommentReplies extends Model
 {
@@ -34,15 +36,17 @@ class QuestionCommentReplies extends Model
         return $this->hasMany('App\Models\Posts\QuestionComment');
     }
 
-    // public static function questionCommentDetail() {
-    //     return self::with([
-    //         'questionComments',
-    //         'user',
-    //     ]);
-    // }
+    public static function question_comment_replies_store($request,$id)
+    {
+        // dd($id);
+        $reply = new QuestionCommentReplies();
+        $data['question_comment_id'] = $id;
+        $data['comment_replies'] = $request->question_reply;
+        $data['user_id'] = Auth::user()->id;
+        $data['event_at'] = carbon::now();
+        $data['created_at'] = carbon::now();
+        $data['updated_at'] = carbon::now();
 
-    // public static function questionCommentQuery($id)
-    // {
-    //     return self::questionCommentDetail()->findOrFail($id);
-    // }
+        $reply->fill($data)->save();
+    }
 }

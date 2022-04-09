@@ -31,12 +31,15 @@
                     <div class="question_title">
                         <div class="question_status">
                             <div class="question_status_box">
+                                <form action="{{ route('question_index') }}" method="get" class="search-questio-form">
+                                    @csrf
                                 <div class="status">
-                                    <a href="" class="answer_under_recruitment">Q&A</a>
+                                    <button class="answer_under_recruitment question_status_btn" name="question_Status" value="2">回答募集中</button>
                                     @if($question_lists->question_status == 1)
-                                        <a href="" class="answer_close">Close</a>
+                                        <button class="answer_close question_status_btn" name="question_Status" value="1">解決済み</button>
                                     @endif
                                 </div>
+                                </form>
                             </div>
                         </div>
                         <a class="question_detail_link" href="{{ route('question_detail',[$question_lists->id]) }}">
@@ -74,6 +77,7 @@
                     質問する
                 </a>
                 <form action="{{ route('question_index') }}" method="get" class="search-questio-form">
+                    @csrf
                     <button type="submit" class="btn btn-danger search_reset"
                         value="search_reset" name="search_reset">リセット</button>
                     <input type="text" class="question_search" name="question_keyword"

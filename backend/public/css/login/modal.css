@@ -55,7 +55,7 @@
 #g-nav {
     /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
     position: fixed;
-    z-index: 999;
+    z-index: 4;
     /*ナビのスタート位置と形状*/
     top: 0;
     left: -120%;
@@ -116,7 +116,8 @@
 .openbtn-side {
     position: fixed;
     z-index: 5;
-    /*ボタンを最前面に*/top: 10px;
+    /*ボタンを最前面に*/
+    top: 10px;
     left: 10px;
     cursor: pointer;
     width: 50px;

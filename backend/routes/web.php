@@ -132,6 +132,12 @@ Route::group(['middleware' => ['can:user']],function() {
                     Route::post('/question/comment/replies/{question_comment_id}','QuestionBoxRepliesController@store')
                     ->name('question_replies_store');
                 });
+                Route::namespace('Chat')->group(function() {
+                    Route::get('/chat/{user_id}','ChatController@index')
+                    ->name('chat');
+                    Route::post('/chat','ChatController@store')
+                    ->name('chat_store');
+                });
             });
         });
 });

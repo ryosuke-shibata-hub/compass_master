@@ -1,4 +1,4 @@
-<div class="media">
+{{-- <div class="media">
     <div class="media-body comment-body">
         <div class="row">
             <span class="comment-body-user">{{ $item->name }}</span>
@@ -8,4 +8,4 @@
             {!! $item->comment !!}
         </span>
     </div>
-</div>
+</div> --}}

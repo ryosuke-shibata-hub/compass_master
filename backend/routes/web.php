@@ -133,10 +133,14 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('question_replies_store');
                 });
                 Route::namespace('Chat')->group(function() {
-                    Route::get('/chat/{user_id}','ChatController@index')
-                    ->name('chat');
-                    Route::post('/chat','ChatController@store')
-                    ->name('chat_store');
+                    Route::get('chat','ChatController@index')
+                    ->name('chat_page');
+                    // Route::get('/chat/{user_id}','ChatController@index')
+                    // ->name('chat');
+                    // Route::post('/chat/send','ChatController@store')
+                    // ->name('chat_store');
+                    // Route::get('/chat/result/ajax','ChatController@getChatData')
+                    // ->name('chat_json');
                 });
             });
         });

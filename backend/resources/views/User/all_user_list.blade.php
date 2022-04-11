@@ -150,9 +150,14 @@
                     @else
                         <li class="user_gender">男性</li>
                     @endif
-                    <a href="{{ route('chat',[$user_list->id]) }}" class="btn btn-outline-info btn-sm start_chat_user">
+                    {{-- @if (Auth::user()->contributorAndAdmin($user_list->id))
+
+                    @else
+                        <a href="{{ route('chat',[$user_list->id]) }}" class="btn btn-outline-info btn-sm start_chat_user">
                         チャットする
-                    </a>
+                        </a>
+                    @endif --}}
+
                     </div>
 
                     <li class="birthday">誕生日:{{ $user_list->birthday->format('Y年m月d日') }}</li>
@@ -178,9 +183,6 @@
                         <li class="role">権限:管理者</li>
                     @endif
                 </div>
-                {{-- <div class="start_chat_user">
-
-                </div> --}}
         @endforeach
         </div>
         </div>

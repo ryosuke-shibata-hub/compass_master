@@ -6,32 +6,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Chat\ChatComment;
 use Auth;
+use App\Models\Users\User;
 
 class ChatController extends Controller
 {
-    //
-    public function index($id)
+   public function __construct()
     {
-        $chat_comments = ChatComment::where('send_user_id',$id)
-        ->get();
-
-        return view('Chat.chat')
-        ->with('chat_comments',$chat_comments);
+        $this->middleware('auth');
     }
 
-    public function store(Request $request,$id)
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
 
-        // dd($request);
         $user = Auth::user();
-        $chat_comments = $request->input('comment');
 
-        ChatComment::create([
-            'user_id' => $id,
-            'send_user_id' -> $user->id,
-            'name' => $user->username_kanji,
-            'comment' => $chat_comments,
-        ]);
-        return redirect()->route('chat');
+        // ログイン者以外のユーザを取得する
+        $users = User::where('id' ,'<>' , $user->id)->get();
+        // チャットユーザ選択画面を表示
+        return view('Chat.chat_top')
+        ->with('users',$users);
     }
 }

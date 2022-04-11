@@ -3,29 +3,43 @@
 @include('layouts.login.header')
 @section('contents')
 <div class="main_chat_box">
-
-        <div class="chat-container row justify-content-center">
-    <div class="chat-area">
-        <div class="card">
-            <div class="card-header">Chat</div>
-            <div class="card-body chat-card">
-                @foreach($chat_comments as $items)
-                    @include('components.chat_comment',['item'=>$items])
-                @endforeach
-
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
         </div>
     </div>
+
+    {{--  チャットルーム  --}}
+    <div id="room">
+        @foreach($chat_comments as $key => $message)
+            {{--   送信したメッセージ  --}}
+            @if($message->send_user_id == Auth::id())
+                <div class="send" style="text-align: right">
+                    <p>{{$message->comment}}</p>
+                </div>
+
+            @endif
+
+            {{--   受信したメッセージ  --}}
+            @if($message->receive == Auth::id())
+                <div class="recieve" style="text-align: left">
+                    <p>{{$message->comment}}</p>
+                </div>
+            @endif
+        @endforeach
     </div>
-    <form action="{{ route('chat_store') }}" method="post">
-        @csrf
-                <div class="comment-container row justify-content-center">
-        <div class="input-group comment-area">
-            <textarea class="form-control" placeholder="input massage" aria-label="With textarea" name="comment"></textarea>
-            <button type="input-group-prepend button" class="btn btn-outline-primary comment-btn">送信</button>
-        </div>
-    </div>
+
+    <form>
+        <textarea name="message" style="width:100%"></textarea>
+        <button type="button" id="btn_send">送信</button>
     </form>
+
+    <input type="hidden" name="send" value="{{ $chat_comments->user_id }}">
+    <input type="hidden" name="recieve" value="{{$chat_comments->send_user_id}}">
+    <input type="hidden" name="login" value="{{Auth::id()}}">
+
+</div>
+
 
 </div>
 

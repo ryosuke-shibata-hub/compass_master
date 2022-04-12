@@ -14,7 +14,7 @@ class ChatComment extends Model
     ];
 
     protected $fillable = [
-        'user_id',
+        'recive_user_id',
         'send_user_id',
         'name',
         'comment',

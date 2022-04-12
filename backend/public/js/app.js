@@ -19380,6 +19380,26 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.Vue = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))["default"];
+Vue.component('message', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Message.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))["default"]);
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: '',
+    chat: {
+      message: []
+    }
+  },
+  methods: {
+    send: function send() {
+      if (this.message.length != 0) {
+        this.chat.message.push(this.message);
+        this.message = '';
+      }
+    }
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

@@ -135,10 +135,10 @@ Route::group(['middleware' => ['can:user']],function() {
                 Route::namespace('Chat')->group(function() {
                     Route::get('chat','ChatController@index')
                     ->name('chat_page');
-                    // Route::get('/chat/{user_id}','ChatController@index')
-                    // ->name('chat');
-                    // Route::post('/chat/send','ChatController@store')
-                    // ->name('chat_store');
+                    Route::get('/chat/{user_id}','ChatController@show')
+                    ->name('chat_room');
+                    Route::post('/chat/send','ChatController@store')
+                    ->name('chat_store');
                     // Route::get('/chat/result/ajax','ChatController@getChatData')
                     // ->name('chat_json');
                 });

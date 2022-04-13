@@ -62,24 +62,18 @@ class ChatController extends Controller
     public function store(Request $request)
     {
 
-        $insertParam = [
+        try {
+
+            $insertParam = [
             'send_user_id' => $request->input('send'),
             'recieve_user_id' => $request->input('recieve'),
             'comment' => $request->input('comment'),
         ];
-
-        try {
             ChatComment::insert($insertParam);
+            event(new ChatMessageRecieved($insertParam));
         } catch (\Throwable $th) {
             return false;
         }
-
-        event(new ChatMessageRecieved($request->all()));
-
-        // $mailSendUser = User::where('id',$request->input('recieve'))->first();
-        // $to = $mailSendUser->email;
-        // Mail::to($to)->send(new SampleNotification());
-
-        return true;
+        // return true;
     }
 }

@@ -65,7 +65,7 @@ class PostsController extends Controller
         $postComment = PostComment::withCount('comment_favorite')
         ->where('post_id',$id)
         ->orderBy('updated_at', 'desc')->get();
-// dd($postComment);
+
         return view('User.show')
         ->with('posts_detail',Post::postDetail($id))
         ->with('postComment',$postComment);

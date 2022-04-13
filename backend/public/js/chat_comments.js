@@ -1,9 +1,9 @@
-$(function () {
+
     //ログを有効にする
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('[YOUR-APP-KEY]', {
-        cluster: '[YOUR-CLUSTER]',
+    var pusher = new Pusher('b01930fa17761ba38f1c', {
+        cluster: 'ap3',
         encrypted: true
     });
 
@@ -15,7 +15,7 @@ $(function () {
 
         let appendText;
         let login = $('input[name="login"]').val();
-
+        console.log(1);
         if (data.send === login) {
             appendText = '<div class="send" style="text-align:right"><p>' + data.message + '</p></div> ';
         } else if (data.recieve === login) {
@@ -43,27 +43,28 @@ $(function () {
 
 
     });
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        }
-    });
-
 
     // メッセージ送信
     $('#btn_send').on('click', function () {
+        var comment = $('textarea[name="comment"]').val();
+        var send = $('input[name="send"]').val();
+        var recieve = $('input[name="recieve"]').val();
+
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
             type: 'POST',
             url: '/chat/send',
             data: {
-                message: $('textarea[name="comment"]').val(),
-                send: $('input[name="send"]').val(),
-                recieve: $('input[name="recieve"]').val(),
-            }
-        }).done(function (result) {
+                comment : $('textarea[name="comment"]').val(),
+                send : $('input[name="send"]').val(),
+                recieve : $('input[name="recieve"]').val(),
+            },
+        })
+        .done(function (result) {
             $('textarea[name="comment"]').val('');
         }).fail(function (result) {
 
         });
     });
-});

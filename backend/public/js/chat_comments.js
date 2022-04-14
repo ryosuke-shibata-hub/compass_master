@@ -8,39 +8,39 @@
     //購読するチャンネルを指定
     var pusherChannel = pusher.subscribe('chat');
     //イベントを受信したら、下記処理
-    pusherChannel.bind('chat_event', function (data) {
-        console.log(1);
-        alert(1);
-        let appendText;
-        let login = $('input[name="login"]').val();
 
-        if (data.send === login) {
-            appendText = '<div class="send" style="text-align:right"><p>' + data.comment + '</p></div> ';
-        } else if (data.recieve === login) {
-            appendText = '<div class="recieve" style="text-align:left"><p>' + data.comment + '</p></div> ';
-        } else {
-            return false;
-        }
-        console.log(10);
-        // メッセージを表示
-        $("#room").append(appendText);
-        console.log(appendText);
-        // if (data.recieve === login) {
-        //     // ブラウザへプッシュ通知
-        //     Push.create("新着メッセージ",
-        //         {
-        //             body: data.message,
-        //             timeout: 8000,
-        //             onClick: function () {
-        //                 window.focus();
-        //                 this.close();
-        //             }
-        //         })
+    // pusherChannel.bind('pusher:subscription_succeeded', function(data) {
 
-        // }
+    //     let appendText;
+    //     let login = $('input[name="login"]').val();
+    //     console.log(1);
+    //     if (data.send === login) {
+    //         appendText = '<div class="send" style="text-align:right"><p>' + data.comment + '</p></div> ';
+    //     } else if (data.recieve === login) {
+    //         appendText = '<div class="recieve" style="text-align:left"><p>' + data.comment + '</p></div> ';
+    //     } else {
+    //         return false;
+    //     }
+    //     console.log(10);
+    //     // メッセージを表示
+    //     $("#room").append(appendText);
+    //     console.log(appendText);
+    //     if (data.recieve === login) {
+    //         // ブラウザへプッシュ通知
+    //         Push.create("新着メッセージ",
+    //             {
+    //                 body: data.comment,
+    //                 timeout: 8000,
+    //                 onClick: function () {
+    //                     window.focus();
+    //                     this.close();
+    //                 }
+    //             })
+
+    //     }
 
 
-    });
+    // });
 
     // メッセージ送信
     $('#btn_send').on('click', function () {

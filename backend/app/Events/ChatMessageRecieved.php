@@ -15,25 +15,21 @@ class ChatMessageRecieved implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    // protected $comment;
-    // protected $request;
     public $insertParam;
+    public $request;
+    public $message;
+    public $comment;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    // public function __construct($request)
-    // {
-    //     //
-    //     $this->request = $request;
-    // }
-    public function __construct(ChatComment $chatComment)
+    public function __construct($request)
     {
         //
-        $this->chatComment = $chatComment;
+        $this->request = $request;
     }
-
     /**
      * Get the channels the event should broadcast on.
      *
@@ -53,26 +49,27 @@ class ChatMessageRecieved implements ShouldBroadcast
      /**
      * ブロードキャストするデータを取得
      *
-    //  * @return array
-    //  */
-    // public function broadcastWith()
-    // {
+     * @return array
+     */
+    public function broadcastWith()
+    {
 
-    //     return [
-    //         'comment' => $this->request['comment'],
-    //         'send' => $this->request['send'],
-    //         'recieve' => $this->request['recieve'],
-    //     ];
-    // }
+        return [
+            'comment' => $this->request['comment'],
+            'send' => $this->request['send'],
+            'recieve' => $this->request['recieve'],
+        ];
+    }
 
-    // /**
-    //  * イベントブロードキャスト名
-    //  *
-    //  * @return string
-    //  */
-    // public function broadcastAs()
-    // {
-    //     return 'chat_event';
-    // }
+    /**
+     * イベントブロードキャスト名
+     *
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'chat_event';
+    }
+
 
 }

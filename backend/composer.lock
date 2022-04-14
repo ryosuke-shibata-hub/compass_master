@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3db59a434158e7d5278d1f52ee81934e",
+    "content-hash": "5b13e08f1d355bc6c46715bfbe32d2a3",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2531,7 +2531,7 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "dev-master",
+            "version": "7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
@@ -2555,7 +2555,6 @@
                 "overtrue/phplint": "^2.3",
                 "phpunit/phpunit": "^8.5|^9.3"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {

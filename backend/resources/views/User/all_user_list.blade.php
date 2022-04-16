@@ -132,9 +132,7 @@
         <div class="item_box">
             <div class="all_user_list">
         @foreach($user_lists as $user_list)
-
-                    <div class="user_item_box">
-
+                <div class="user_item_box">
                         @if(!empty($user_list->logo))
                             <li class="user_img">
                                 <img style="width:30px;" src="/uploads/{{ $user_list->logo }}">
@@ -152,6 +150,14 @@
                     @else
                         <li class="user_gender">男性</li>
                     @endif
+                    {{-- @if (Auth::user()->contributorAndAdmin($user_list->id))
+
+                    @else
+                        <a href="{{ route('chat',[$user_list->id]) }}" class="btn btn-outline-info btn-sm start_chat_user">
+                        チャットする
+                        </a>
+                    @endif --}}
+
                     </div>
 
                     <li class="birthday">誕生日:{{ $user_list->birthday->format('Y年m月d日') }}</li>
@@ -177,7 +183,6 @@
                         <li class="role">権限:管理者</li>
                     @endif
                 </div>
-
         @endforeach
         </div>
         </div>

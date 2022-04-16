@@ -61,6 +61,8 @@ return [
             ],
             'options' => [
                 // Memcached::OPT_CONNECT_TIMEOUT => 2000,
+                'cluster' => 'ap3',
+                'useTLS' => true
             ],
             'servers' => [
                 [

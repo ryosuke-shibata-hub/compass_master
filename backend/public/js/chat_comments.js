@@ -1,4 +1,4 @@
-$(function () {
+// $(function () {
        //ログを有効にする
     Pusher.logToConsole = true;
 
@@ -9,7 +9,7 @@ $(function () {
     //購読するチャンネルを指定
     var pusherChannel = pusher.subscribe('chat');
     //イベントを受信したら、下記処理
-    pusherChannel.bind('pusher:subscription_succeeded', function(data) {
+    pusherChannel.bind('chat_event', function(data) {
 
         let appendText;
         let login = $('input[name="login"]').val();
@@ -46,17 +46,16 @@ $(function () {
         // メッセージ送信
     // $('#btn_send').on('click', function () {
     $('#btn_send').on('click', function () {
-        var comment = $('textarea[name="comment"]').val();
-        var send = $('input[name="send"]').val();
-        var recieve = $('input[name="recieve"]').val();
-
         $.ajax({
+            headers : {
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content'),
+            },
             type : 'POST',
             url : '/chat/send',
             data: {
-            'comment' : comment,
-            'send' : send,
-            'recieve' : recieve,
+                comment : $('textarea[name="comment"]').val(),
+                send : $('input[name="send"]').val(),
+                recieve : $('input[name="recieve"]').val(),
         },
         }).done(function(result){
             $('textarea[name="comment"]').val('');
@@ -64,4 +63,4 @@ $(function () {
 
         });
     });
-});
+// });

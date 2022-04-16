@@ -10,15 +10,13 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Models\Chat\ChatComment;
+use Log;
 
 class ChatMessageRecieved implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $insertParam;
     public $request;
-    public $message;
-    public $comment;
 
     /**
      * Create a new event instance.
@@ -41,9 +39,7 @@ class ChatMessageRecieved implements ShouldBroadcast
     // }
     public function broadcastOn()
     {
-
         return new Channel('chat');
-
     }
 
      /**
@@ -53,7 +49,6 @@ class ChatMessageRecieved implements ShouldBroadcast
      */
     public function broadcastWith()
     {
-
         return [
             'comment' => $this->request['comment'],
             'send' => $this->request['send'],

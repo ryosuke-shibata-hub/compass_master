@@ -9,6 +9,7 @@ use Auth;
 use App\Models\Users\User;
 use App\Mail\SampleNotification;
 use App\Events\ChatMessageRecieved;
+use Log;
 
 class ChatController extends Controller
 {
@@ -59,21 +60,25 @@ class ChatController extends Controller
 
     public function store(Request $request)
     {
+        try{
 
-        $insertParam = [
+            $insertParam = [
             'send_user_id' => $request->input('send'),
             'recieve_user_id' => $request->input('recieve'),
             'comment' => $request->input('comment'),
         ];
-
-        try{
             ChatComment::insert($insertParam);
+
+            event(new ChatMessageRecieved($request->all()));
+
+            return true;
         }catch (\Exception $e){
+
             return false;
         }
 
-        event(new ChatMessageRecieved($request->all()));
 
-        return true;
+
+
     }
 }

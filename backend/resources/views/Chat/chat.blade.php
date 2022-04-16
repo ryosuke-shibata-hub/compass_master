@@ -42,7 +42,7 @@
 
 
 </div>
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.js"></script>
 @endsection
 @include('layouts.login.footer')

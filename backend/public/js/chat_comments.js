@@ -9,15 +9,15 @@
     //購読するチャンネルを指定
     var pusherChannel = pusher.subscribe('chat');
     //イベントを受信したら、下記処理
-    pusherChannel.bind('chat_event', function(data) {
+    pusherChannel.bind('chat_event', function (data) {
 
         let appendText;
         let login = $('input[name="login"]').val();
         console.log(data);
         if (data.send === login) {
-            appendText = '<div class="send" style="text-align:right"><p>' + data.comment + '</p></div> ';
+            appendText = '<div class="send"><p class="chat-date"> ' + data.created_at + '</p><div class="send-box"><pre class="pre-chat">' + data.comment + '</pre></div > </div>';
         } else if (data.recieve === login) {
-            appendText = '<div class="recieve" style="text-align:left"><p>' + data.comment + '</p></div> ';
+             appendText = '<div class="recieve"><p class="chat-date"> ' + data.created_at + '</p><div class="recieve-box"><pre class="pre-chat">' + data.comment + '</pre></div ></div>';
         } else {
             return false;
         }
@@ -55,7 +55,8 @@
             data: {
                 comment : $('textarea[name="comment"]').val(),
                 send : $('input[name="send"]').val(),
-                recieve : $('input[name="recieve"]').val(),
+                recieve: $('input[name="recieve"]').val(),
+                created_at : $('input[name="date"]').val(),
         },
         }).done(function(result){
             $('textarea[name="comment"]').val('');

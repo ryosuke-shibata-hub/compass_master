@@ -1,3 +1,5 @@
+/*# sourceMappingURL=view.css.map */
+
 .main_chat_box {
     min-height: 1000px;
 }
@@ -51,4 +53,58 @@
   margin-left: 5px;
   color: #a0a0a0;
 }
-/*# sourceMappingURL=view.css.map */
+.chat-date {
+    font-size: 0.2rem;
+    margin-bottom: -5px;
+}
+.send {
+    margin-left: 80%;
+}
+.recieve {
+    margin-left: 10%;
+}
+.send-box {
+    border-radius: 0.2rem;
+    display: inline-block;
+    padding: 3px;
+    margin: 5px;
+    background-color: aquamarine;
+    text-align: center;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
+.recieve-box {
+    border-radius: 0.2rem;
+    display: inline-block;
+    padding: 3px;
+    margin: 5px;
+    background-color: #dfdfdf;
+    text-align: center;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
+.pre-chat {
+    padding-top: 0px;
+    margin-bottom: 0px;
+    font-size: 1.3em;
+}
+.chat_room {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border: solid 1px #a0a0a0;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.send-btn {
+    margin-left: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

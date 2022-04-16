@@ -53,6 +53,7 @@ class ChatMessageRecieved implements ShouldBroadcast
             'comment' => $this->request['comment'],
             'send' => $this->request['send'],
             'recieve' => $this->request['recieve'],
+            'created_at' => $this->request['created_at'],
         ];
     }
 

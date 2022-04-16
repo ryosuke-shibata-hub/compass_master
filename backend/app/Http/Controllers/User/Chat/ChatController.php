@@ -9,6 +9,7 @@ use Auth;
 use App\Models\Users\User;
 use App\Mail\SampleNotification;
 use App\Events\ChatMessageRecieved;
+use Carbon\Carbon;
 use Log;
 
 class ChatController extends Controller
@@ -66,6 +67,7 @@ class ChatController extends Controller
             'send_user_id' => $request->input('send'),
             'recieve_user_id' => $request->input('recieve'),
             'comment' => $request->input('comment'),
+            'created_at' =>  $request->input('created_at'),
         ];
             ChatComment::insert($insertParam);
 

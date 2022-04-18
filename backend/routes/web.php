@@ -139,8 +139,17 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('chat_room');
                     Route::post('/chat/send','ChatController@store')
                     ->name('chat_store');
-                    // Route::get('/chat/result/ajax','ChatController@getChatData')
-                    // ->name('chat_json');
+                });
+                Route::namespace('SchoolReservation')->group(function() {
+                    Route::get('/school_reservation', 'School_Reaervation@index')
+                    ->name('school_reservation');
+
+                });
+                Route::namespace('MySchedule')->group(function() {
+                    Route::get('/my_schedule', 'MySchedule@index')
+                    ->name('my_schedule');
+
+
                 });
             });
         });

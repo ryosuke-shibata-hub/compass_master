@@ -16,12 +16,15 @@
     <link rel="stylesheet" href="{{ asset('/css/login/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/login/questionBox.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/login/Chat.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/login/SchoolReservation.css') }}">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/UI-darkness/jquery-ui.css">
     <script src="/js/datepicker-ja.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/chat_comments.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <title>@yield('title')</title>
 </head>
@@ -47,6 +50,12 @@
                     </li>
                     <li class="user_list pt-5 nav_list">
                         <a href="/chat">チャット</a>
+                    </li>
+                    <li class="user_list pt-5 nav_list">
+                        <a href="/school_reservation">スクール予約</a>
+                    </li>
+                    <li class="user_list pt-5 nav_list">
+                        <a href="/my_schedule">マイスケジュール</a>
                     </li>
                     @can('admin')
                     <li class="user_list pt-5 nav_list">

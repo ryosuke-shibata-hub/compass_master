@@ -25542,25 +25542,9 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue').default;
-// Vue.component('message', require('./components/Message.vue').default);
-// const app = new Vue({
-//  el: '#app',
-//  data:{
-//   message:'',
-//   chat:{
-//    message:[]
-//   }
-//  },
-//  methods:{
-//   send(){
-//    if(this.message.length !=0){
-//     this.chat.message.push(this.message);
-//     this.message = '';
-//    }
-//   },
-//  }
-// });
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./calendar */ "./resources/js/calendar.js");
 
 /***/ }),
 
@@ -25597,6 +25581,17 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   cluster: "ap3",
   forceTLS: true
 });
+
+/***/ }),
+
+/***/ "./resources/js/calendar.js":
+/*!**********************************!*\
+  !*** ./resources/js/calendar.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 

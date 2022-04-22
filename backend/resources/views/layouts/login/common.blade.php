@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="{{ asset('/css/login/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/login/questionBox.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/login/Chat.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/login/SchoolReservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/login/Calender.css') }}">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/UI-darkness/jquery-ui.css">
-    <script src="/js/datepicker-ja.js"></script>
+    <script src="{{ asset('js/datepicker-ja.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/chat_comments.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -47,7 +47,7 @@
             "database/factories"
         ],
         "files": [
-            "app/Helper/helpers.php"
+            "app/Calender/Calender.php"
         ]
     },
     "autoload-dev": {

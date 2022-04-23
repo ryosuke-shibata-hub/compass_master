@@ -14,10 +14,9 @@ class QuestionBox extends Migration
    public function up()
     {
         //
-        Schema::create('question_box', function (Blueprint $table) {
+        Schema::create('question_boxes', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('id');
             $table->integer('user_id')->comment('ユーザーid');
-            $table->integer('question_box_id')->comment('質問のid');
             $table->integer('delete_user_id')->nullable()->comment('誰が削除したか');
             $table->integer('update_user_id')->nullable()->comment('誰が編集したか');
             $table->string('title', 255)->comment('タイトル');

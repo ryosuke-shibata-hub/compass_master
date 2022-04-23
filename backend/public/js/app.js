@@ -25544,7 +25544,7 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./calendar */ "./resources/js/calendar.js");
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /***/ }),
 
@@ -25581,17 +25581,6 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   cluster: "ap3",
   forceTLS: true
 });
-
-/***/ }),
-
-/***/ "./resources/js/calendar.js":
-/*!**********************************!*\
-  !*** ./resources/js/calendar.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 

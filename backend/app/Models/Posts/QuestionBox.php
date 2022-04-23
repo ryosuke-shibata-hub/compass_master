@@ -18,7 +18,7 @@ class QuestionBox extends Model
 
     protected $fillable = [
         'user_id',
-        'question_box_id',
+        // 'question_box_id',
         'delete_user_id',
         'update_user_id',
         'title',
@@ -34,7 +34,7 @@ class QuestionBox extends Model
 
     public function answer()
     {
-        return $this->hasMany('App\Models\Posts\QuestionComment');
+        return $this->hasMany('App\Models\Posts\QuestionComment','question_id');
     }
     public function questionTagCategory()
     {

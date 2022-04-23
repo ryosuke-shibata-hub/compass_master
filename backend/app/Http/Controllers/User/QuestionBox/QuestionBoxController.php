@@ -28,7 +28,7 @@ class QuestionBoxController extends Controller
 
         $question_detail = QuestionBox::questionDetail($id);
 // dd($question_detail);
-        $question_comment_detail = QuestionComment::where('question_box_id',$id)
+        $question_comment_detail = QuestionComment::where('question_id',$id)
         ->orderBy('event_at','desc')
         ->get();
 

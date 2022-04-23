@@ -150,13 +150,6 @@
                     @else
                         <li class="user_gender">男性</li>
                     @endif
-                    {{-- @if (Auth::user()->contributorAndAdmin($user_list->id))
-
-                    @else
-                        <a href="{{ route('chat',[$user_list->id]) }}" class="btn btn-outline-info btn-sm start_chat_user">
-                        チャットする
-                        </a>
-                    @endif --}}
 
                     </div>
 
@@ -173,7 +166,7 @@
                         <li class="userScore">点数:{{ $score->score }}点</li>
                     @endforeach
 
-                    @if($user_list->admin_role == 0)
+                    @if($user_list->admin_role == 7)
                         <li class="role">権限:国語教師</li>
                     @elseif($user_list->admin_role == 5)
                         <li class="role">権限:数学教師</li>

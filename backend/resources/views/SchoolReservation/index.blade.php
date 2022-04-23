@@ -6,7 +6,7 @@
 <div class="calender-contents">
     <div class="SchoolCalender">
         <div class="col-md-6 w-50">
-            <a href="{{ route('calendar', ['year' => $firstDayOfMonth->year, 'month' => $firstDayOfMonth->month]) }}" class="btn btn-outline-info">当月へ</a>
+            <a href="{{ route('calendar', ['year' => $mv_now_year, 'month' => $mv_now_month]) }}" class="btn btn-outline-info">当月へ</a>
         </div>
         <div class="row calender-nav">
             <div class="col-md-6 w-25">
@@ -36,9 +36,9 @@
             @foreach($dates as $date)
             @if($date < now())
                 @if($date->isSunday())
-                    <tr style="background-color: #c0c0c0">
+                    <tr>
                         @endif
-                        <td>{{ $date->format('j') }}日</td>
+                        <td class="calender_td_width" style="background-color: #c0c0c0">{{ $date->format('j') }}日</td>
                         @if($date->isSaturday())
                     </tr>
                 @endif
@@ -46,9 +46,9 @@
                 @if($date->isSunday())
                     <tr>
                         @endif
-                        <td>{{ $date->format('j') }}日
+                        <td class="calender_td_width" style="background-color: #ffffff">{{ $date->format('j') }}日
                             <br>
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm w-75" aria-label=".form-select-sm example">
                             <option selected></option>
                             <option value="1" name="1">リモート1部</option>
                             <option value="2" name="2">リモート2部</option>

@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('user',function($user) {
-            return in_array($user->admin_role,[0,5,10,15],true);
+            return in_array($user->admin_role,[7,5,10,15],true);
         });
 
         //

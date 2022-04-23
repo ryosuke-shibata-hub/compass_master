@@ -19,7 +19,7 @@ class QuestionComment extends Model
 
     protected $fillable = [
         'user_id',
-        'question_box_id',
+        'question_id',
         'delete_user_id',
         'update_user_id',
         'question_comment',
@@ -54,7 +54,7 @@ class QuestionComment extends Model
     {
         // dd($id);
         $comment = new QuestionComment();
-        $data['question_box_id'] = $id;
+        $data['question_id'] = $id;
         $data['question_comment'] = $request->name;
         $data['user_id'] = Auth::user()->id;
         $data['event_at'] = carbon::now();

@@ -19,7 +19,7 @@ class QuestionComment extends Migration
             $table->integer('question_id')->comment('質問id');
             $table->integer('delete_user_id')->nullable()->comment('誰が削除したか');
             $table->integer('update_user_id')->nullable()->comment('誰が編集したか');
-            $table->string('comment', 2500)->comment('コメント');
+            $table->string('question_comment', 2500)->comment('コメント');
             $table->date('event_at')->comment('何年何月何日の投稿か');
             $table->timestamp('created_at')->useCurrent()->comment('登録日時');
             $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'))->comment('更新日時');

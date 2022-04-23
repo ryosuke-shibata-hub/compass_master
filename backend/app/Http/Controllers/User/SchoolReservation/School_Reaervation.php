@@ -36,11 +36,16 @@ class School_Reaervation extends Controller
             $dates[] = $firstDayOfCalender->copy();
             $firstDayOfCalender->addDay();
         }
+
+        $mv_now_year = Carbon::now()->format('Y');
+        $mv_now_month = Carbon::now()->format('m');
 // dd($firstDayOfMonth);
         return view('SchoolReservation.index')
         ->with('weeks',$weeks)
         ->with('dates',$dates)
-        ->with('firstDayOfMonth',$firstDayOfMonth);
+        ->with('firstDayOfMonth',$firstDayOfMonth)
+        ->with('mv_now_year',$mv_now_year)
+        ->with('mv_now_month',$mv_now_month);
     }
 
     public function store(Request $request)

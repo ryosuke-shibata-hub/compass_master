@@ -93,12 +93,11 @@
                     @foreach($tag_list as $tag_list)
                     <button type="submit" class="tag_title"
                         value="{{ $tag_list->id }}" name="tag_id">
-                        <img class="tag_logo" style="width:15px;" src="/uploads/question_tag/{{ $tag_list->tag_logo }}">　
+                        <img class="tag_logo" style="width:15px;" src="../../uploads/question_tag/{{ $tag_list->tag_logo }}">　
                         {{ $tag_list->question_tag }}
                     </button>
                 @endforeach
                 </form>
-
             </div>
         </section>
     </div>

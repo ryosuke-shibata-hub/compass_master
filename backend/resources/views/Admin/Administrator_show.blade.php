@@ -43,7 +43,7 @@
                         </td>
                         <td>{{ $users->username_kanji }}</td>
                         <td>{{ $users->email }}</td>
-                        @if($users->admin_role == 0)
+                        @if($users->admin_role == 7)
                             <td>国語教師</td>
                         @elseif($users->admin_role == 5)
                             <td>数学教師</td>

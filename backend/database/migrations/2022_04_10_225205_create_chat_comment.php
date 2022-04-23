@@ -15,8 +15,8 @@ class CreateChatComment extends Migration
     {
         Schema::create('chat_comment', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->string('name');
+            $table->integer('send_user_id');
+            $table->integer('recieve_user_id');
             $table->string('comment');
             $table->timestamps();
         });

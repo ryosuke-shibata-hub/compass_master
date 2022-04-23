@@ -16,14 +16,48 @@ class UserTable extends Seeder
         // User::truncate();
 
         // User::create([
-        //     'username_kanji' => '山田太郎',
-        //     'username_kana' => 'ヤマダタロウ',
-        //     'email' => 'yamada@test.com',
-        //     'password' => Hash::make('test'),
+        //     'username_kanji' => '管理者',
+        //     'username_kana' => 'カンリシャ',
+        //     'email' => 'email_email_email@email.com',
+        //     'password' => Hash::make('123456789'),
+        //     'birthday' => '2000-01-01',
+        //     'AdmissionDay' => '2010-05-05',
+        //     'gender' => '1',
+        //     'admin_role' => '15',
+        //     'logo' => 'null',
+        // ]);
+        //     User::create([
+        //     'username_kanji' => 'テストユーザー',
+        //     'username_kana' => 'テストユーザー',
+        //     'email' => 'email_email@email.com',
+        //     'password' => Hash::make('123456789'),
         //     'birthday' => '2000-01-01',
         //     'AdmissionDay' => '2010-05-05',
         //     'gender' => '1',
         //     'admin_role' => '10',
+        //     'logo' => 'null',
+        // ]);
+        //      User::create([
+        //     'username_kanji' => '国語教師',
+        //     'username_kana' => 'コクゴキョウシ',
+        //     'email' => 'kokugo@email.com',
+        //     'password' => Hash::make('123456789'),
+        //     'birthday' => '2000-01-01',
+        //     'AdmissionDay' => '2010-05-05',
+        //     'gender' => '1',
+        //     'admin_role' => '0',
+        //     'logo' => 'null',
+        // ]);
+        //      User::create([
+        //     'username_kanji' => '数学教師',
+        //     'username_kana' => 'スウガクキョウシ',
+        //     'email' => 'suugaku@email.com',
+        //     'password' => Hash::make('123456789'),
+        //     'birthday' => '2000-01-01',
+        //     'AdmissionDay' => '2010-05-05',
+        //     'gender' => '0',
+        //     'admin_role' => '5',
+        //     'logo' => 'null',
         // ]);
 
         //日本語のテストデータ作成
@@ -40,9 +74,10 @@ class UserTable extends Seeder
                     'AdmissionDay' => '2010-05-05',
                     'gender' => '1',
                     'admin_role' => '10',
+                    'logo' => 'null',
             ]);
         }
 
-        factory(User::class, 100)->create();
+        // factory(User::class, 20)->create();
     }
 }

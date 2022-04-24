@@ -141,8 +141,6 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('chat_store');
                 });
                 Route::namespace('SchoolReservation')->group(function() {
-                    // Route::get('/school_reservation', 'School_Reaervation@getHoliday')
-                    // ->name('school_reservation');
                     Route::get('/school_reservation{year?}-{month?}', 'School_Reaervation@index')
                     ->name('calendar');
                     Route::post('/school_reservation', 'School_Reaervation@store')

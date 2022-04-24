@@ -38,7 +38,9 @@
                 @if($date->isSunday())
                     <tr>
                         @endif
-                        <td class="calender_td_width" style="background-color: #c0c0c0">{{ $date->format('j') }}日</td>
+                        <td class="calender_td_width" style="background-color: #c0c0c0">{{ $date->format('j') }}日
+                            <input type="hidden" name="reserved_day" value="{{ $date->format('j') }}">
+                        </td>
                         @if($date->isSaturday())
                     </tr>
                 @endif
@@ -48,12 +50,12 @@
                         @endif
                         <td class="calender_td_width" style="background-color: #ffffff">{{ $date->format('j') }}日
                             <br>
-                            <select class="form-select form-select-sm w-75" aria-label=".form-select-sm example">
-                            <option selected></option>
-                            <option value="1" name="1">リモート1部</option>
-                            <option value="2" name="2">リモート2部</option>
-                            <option value="3" name="3">リモート3部</option>
-                        </select>
+                                <select class="form-select form-select-sm w-75" name="select_room">
+                                    <option></option>
+                                    @foreach($room_list as $room)
+                                        <option value="{{ $room->id }}">{{ $room->room_name }}</option>
+                                    @endforeach
+                            </select>
                         </td>
                         @if($date->isSaturday())
                     </tr>
@@ -63,12 +65,12 @@
             </tbody>
         </table>
         <div class="btn-position">
-
                 <button class="btn btn-outline-info" type="submit">
                     予約する
                 </button>
-
-
+                <input type="hidden" name="year" value="{{ $mv_now_year }}">
+                <input type="hidden" name="month" value="{{ $mv_now_month }}">
+                {{-- <input type="hidden" name="year" value="{{  }}"> --}}
         </div>
         </form>
     </div>

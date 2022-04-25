@@ -18,8 +18,6 @@
                     <div id='calendar'></div>
                 </div>
             </div>
-
-
 </div>
 @endsection
 @include('layouts.login.footer')

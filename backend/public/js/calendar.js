@@ -1,4 +1,10 @@
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
@@ -16,34 +22,33 @@
                 list: 'リスト'
             },
             selectable: true,
-            select: function (info) {
+            // selectHelper: true,
+            select: function (start,end,allDay) {
         //alert("selected " + info.startStr + " to " + info.endStr);
-
         // 入力ダイアログ
-        const eventName = prompt("イベントを入力してください");
+                var title = prompt('イベントを入力してください');
 
-        if (eventName) {
-            // Laravelの登録処理の呼び出し
-            axios
-                .post("/my_schedule/store", {
-                    start_date: info.start.valueOf(),
-                    end_date: info.end.valueOf(),
-                    event_name: eventName,
-                })
-                .then(() => {
-                    // イベントの追加
-                    calendar.addEvent({
-                        title: eventName,
-                        start: info.start,
-                        end: info.end,
-                        allDay: true,
+                if (title) {
+
+
+                    $.ajax({
+                        url: "/my_schedule/store",
+                        type: "POST",
+                        data: {
+                            title: title,
+                            // start: start,
+                            // end: end,
+                            // type: 'add',
+                        },
+                        success:function (data) {
+                            calendar.FullCalendar('refechEvents');
+                            alert('ok');
+                        }
                     });
-                })
-                .catch(() => {
-                    // バリデーションエラーなど
-                    alert("登録に失敗しました");
-                });
-        }
+                }
+
+
+
     },
             noEventsContent: 'スケジュールはありません',
          });

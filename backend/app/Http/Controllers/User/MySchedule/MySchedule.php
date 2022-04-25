@@ -6,12 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\MySchedule\MyScheduleModel;
 use log;
+use Auth;
 
 class MySchedule extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
+
+        if($request->ajax()) {
+            $user_id = Auth::user()->id;
+
+            $data = MyScheduleModel::whereDate('start_date','>=',$request->start)
+                ->whereDate('end_date','<=',$request->end)
+                ->where('user_id',$user_id)
+                ->get(['id','start_date','end_date','event_name','user_id']);
+
+                return  response()->json($data);
+        } ;
         return view('MySchedule.top');
     }
 

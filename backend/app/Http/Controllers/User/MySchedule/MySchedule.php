@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User\MySchedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\MySchedule\MyScheduleModel;
-use log;
+use Log;
 use Auth;
 
 class MySchedule extends Controller
@@ -14,16 +14,6 @@ class MySchedule extends Controller
     public function index(Request $request)
     {
 
-        if($request->ajax()) {
-            $user_id = Auth::user()->id;
-
-            $data = MyScheduleModel::whereDate('start_date','>=',$request->start)
-                ->whereDate('end_date','<=',$request->end)
-                ->where('user_id',$user_id)
-                ->get(['id','start_date','end_date','event_name','user_id']);
-
-                return  response()->json($data);
-        } ;
         return view('MySchedule.top');
     }
 
@@ -32,17 +22,17 @@ class MySchedule extends Controller
 
         Log::alert($request);
 
-        $request->validate([
-            'start_date' => 'required|integer',
-            'end_date' => 'required|integer',
-            'event_name' => 'required|max:32',
-        ]);
+        // $request->validate([
+        //     'start_date' => 'required|integer',
+        //     'end_date' => 'required|integer',
+        //     'event_name' => 'required|max:32',
+        // ]);
 
         $schedule = new MyScheduleModel;
 
         $schedule->start_date = date('Y-m-d',$request->input('start_date')/1000);
         $schedule->end_date = date('Y-m-d',$request->input('end_date')/1000);
-        $schedule->event_name = $request->input('event_name');
+        $schedule->event_name = $request->input('title');
         $schedule->save();
 
         return;

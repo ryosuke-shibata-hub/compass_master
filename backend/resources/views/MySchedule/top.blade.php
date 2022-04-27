@@ -2,7 +2,7 @@
 @section('title','マイスケジュール')
 @include('layouts.login.header')
 @section('contents')
-<script href="{{ asset('/js/calendar.js') }}" defer></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 <div class="school_reservation_content">
             <div id="calender">

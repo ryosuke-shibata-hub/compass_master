@@ -42198,12 +42198,23 @@ var calendarEl = document.getElementById("calendar");
 var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
   plugins: [_fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_list__WEBPACK_IMPORTED_MODULE_4__["default"]],
   initialView: "dayGridMonth",
+  locale: "ja",
+  buttonText: {
+    prev: '先月',
+    next: '次月',
+    prevYear: '<<',
+    nextYear: '>>',
+    today: '今日',
+    month: '月',
+    week: '週',
+    day: '日',
+    list: '一覧'
+  },
   headerToolbar: {
     left: "prev,next today",
     center: "title",
     right: "dayGridMonth,timeGridWeek,listWeek"
   },
-  locale: "ja",
   // 日付をクリック、または範囲を選択したイベント
   selectable: true,
   select: function select(info) {

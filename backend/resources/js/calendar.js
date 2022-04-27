@@ -9,12 +9,25 @@ var calendarEl = document.getElementById("calendar");
 let calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
     initialView: "dayGridMonth",
+    locale: "ja",
+    buttonText: {
+        prev:     '先月',
+        next:     '次月',
+        prevYear: '<<',
+        nextYear: '>>',
+        today:    '今日',
+        month:    '月',
+        week:     '週',
+        day:      '日',
+        list:     '一覧'
+    },
     headerToolbar: {
         left: "prev,next today",
         center: "title",
         right: "dayGridMonth,timeGridWeek,listWeek",
     },
-    locale: "ja",
+
+
 
     // 日付をクリック、または範囲を選択したイベント
     selectable: true,

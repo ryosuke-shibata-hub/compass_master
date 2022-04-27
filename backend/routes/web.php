@@ -150,6 +150,8 @@ Route::group(['middleware' => ['can:user']],function() {
                 Route::namespace('MySchedule')->group(function() {
                     Route::get('/my_schedule', 'MySchedule@index')
                     ->name('my_schedule');
+                    Route::post('/my_schedule/get', 'MySchedule@get_calendar')
+                    ->name('get_calendar');
                     Route::post('/my_schedule/store', 'MySchedule@store')
                     ->name('my_schedule_store');
 

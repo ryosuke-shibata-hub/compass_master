@@ -42131,8 +42131,9 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.axios = require("axios");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 __webpack_require__(/*! ./calendar */ "./resources/js/calendar.js");
 
@@ -42211,14 +42212,39 @@ var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](c
     var eventName = prompt("イベントを入力してください");
 
     if (eventName) {
-      // イベントの追加
-      calendar.addEvent({
-        title: eventName,
-        start: info.start,
-        end: info.end,
-        allDay: true
+      // Laravelの登録処理の呼び出し
+      axios.post("/my_schedule/store", {
+        start_date: info.start.valueOf(),
+        end_date: info.end.valueOf(),
+        event_name: eventName
+      }).then(function () {
+        // イベントの追加
+        calendar.addEvent({
+          title: eventName,
+          start: info.start,
+          end: info.end,
+          allDay: true
+        });
+      })["catch"](function () {
+        // バリデーションエラーなど
+        alert("登録に失敗しました");
       });
     }
+  },
+  events: function events(info, successCallback, failureCallback) {
+    // Laravelのイベント取得処理の呼び出し
+    axios.post("/my_schedule/get", {
+      start_date: info.start.valueOf(),
+      end_date: info.end.valueOf()
+    }).then(function (response) {
+      // 追加したイベントを削除
+      calendar.removeAllEvents(); // カレンダーに読み込み
+
+      successCallback(response.data);
+    })["catch"](function () {
+      // バリデーションエラーなど
+      alert("登録に失敗しました");
+    });
   }
 });
 calendar.render();

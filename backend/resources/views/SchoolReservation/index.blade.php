@@ -30,8 +30,6 @@
                 @endforeach
             </tr>
             </thead>
-            <form action="{{ route('store_school_reservation') }}" method="POST">
-                @csrf
             <tbody>
             @foreach($dates as $date)
             @if($date < now())
@@ -39,7 +37,6 @@
                     <tr>
                         @endif
                         <td class="calender_td_width" style="background-color: #c0c0c0">{{ $date->format('j') }}日
-                            <input type="hidden" name="reserved_day" value="{{ $date->format('j') }}">
                         </td>
                         @if($date->isSaturday())
                     </tr>
@@ -48,14 +45,15 @@
                 @if($date->isSunday())
                     <tr>
                         @endif
-                        <td class="calender_td_width" style="background-color: #ffffff">{{ $date->format('j') }}日
+                        <td class="calender_td_width" style="background-color: #ffffff" >{{ $date->format('j') }}日
                             <br>
-                                <select class="form-select form-select-sm w-75" name="select_room">
+                                <select form="school_reservation" class="form-select form-select-sm w-75" name="{{ $date->format('Y-m-d') }}">
                                     <option></option>
-                                    @foreach($room_list as $room)
-                                        <option value="{{ $room->id }}">{{ $room->room_name }}</option>
-                                    @endforeach
-                            </select>
+                                        @foreach($room_list as $room)
+                                            <option value="{{ $room->id }}">{{ $room->room_name }}</option>
+                                        @endforeach
+                                </select>
+                            <input type="hidden" name="reserved_day" value="{{ $date->format('Y-m-d') }}">
                         </td>
                         @if($date->isSaturday())
                     </tr>
@@ -65,14 +63,15 @@
             </tbody>
         </table>
         <div class="btn-position">
-                <button class="btn btn-outline-info" type="submit">
-                    予約する
-                </button>
-                <input type="hidden" name="year" value="{{ $mv_now_year }}">
-                <input type="hidden" name="month" value="{{ $mv_now_month }}">
-                {{-- <input type="hidden" name="year" value="{{  }}"> --}}
+            <form id="school_reservation" action="{{ route('store_school_reservation') }}" method="POST">
+                @csrf
+                    <button class="btn btn-outline-info" type="submit" onclick="return checkSubmit('予約しますか？');">
+                        予約する
+                        <input type="hidden" name="user_id" value={{ Auth::user()->id }}>
+                    </button>
+                </form>
         </div>
-        </form>
+
     </div>
 </div>
 

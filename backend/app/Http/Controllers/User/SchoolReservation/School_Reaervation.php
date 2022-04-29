@@ -55,7 +55,7 @@ class School_Reaervation extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
 
         return redirect()->back();
     }

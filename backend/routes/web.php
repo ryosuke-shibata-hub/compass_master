@@ -141,8 +141,11 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('chat_store');
                 });
                 Route::namespace('SchoolReservation')->group(function() {
-                    Route::get('/school_reservation{year?}-{month?}', 'School_Reaervation@index')
-                    ->name('calendar');
+                    // Route::get('/school_reservation{year?}-{month?}', 'School_Reaervation@index')
+                    // ->name('calendar');
+                    Route::get('school_reservation_reservation', 'School_Reaervation@top')
+                    ->name('top');
+
                     Route::post('/school_reservation', 'School_Reaervation@store')
                     ->name('store_school_reservation');
 
@@ -154,8 +157,12 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('get_calendar');
                     Route::post('/my_schedule/store', 'MySchedule@store')
                     ->name('my_schedule_store');
-
-
+                });
+                Route::namespace('MyTask')->group(function() {
+                    Route::get('/task', 'TaskController@index')
+                    ->name('my_task');
+                    Route::post('/task/store','TaskController@store')
+                    ->name('task_store');
                 });
             });
         });

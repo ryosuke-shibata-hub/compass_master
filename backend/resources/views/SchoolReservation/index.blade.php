@@ -45,18 +45,19 @@
                 @if($date->isSunday())
                     <tr>
                         @endif
-                        <td class="calender_td_width" style="background-color: #ffffff" >{{ $date->format('j') }}日
-                            <br>
-                                <select form="school_reservation" class="form-select form-select-sm w-75" name="{{ $date->format('Y-m-d') }}">
-                                    <option></option>
-                                        @foreach($room_list as $room)
-                                            <option value="{{ $room->id }}">{{ $room->room_name }}</option>
-                                        @endforeach
+                            <td class="calender_td_width" style="background-color: #ffffff" >{{ $date->format('j') }}日
+                                <select form="school_reservation" class="form-select form-select-sm w-75" name="select_room">
+                                    <option value="0"></option>
+                                    <option value="1">リモ1部</option>
+                                    <option value="2">リモ2部</option>
+                                    <option value="3">リモ3部</option>
+                                    <option value="4">本社1部</option>
+                                    <option value="5">本社2部</option>
+                                    <option value="6">本社3部</option>
                                 </select>
-                            <input type="hidden" name="reserved_day" value="{{ $date->format('Y-m-d') }}">
-                        </td>
+                            </td>
                         @if($date->isSaturday())
-                    </tr>
+                </tr>
                 @endif
             @endif
             @endforeach

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\SchoolReservation\SchoolReservationRoom;
+use App\Events\CalendarView;
+use App\Events\CalendarWeek;
 
 class School_Reaervation extends Controller
 {
@@ -53,9 +55,20 @@ class School_Reaervation extends Controller
         ->with('room_list',$room_list);
     }
 
+
+    public function top(Request $request)
+    {
+
+        $calendar = new CalendarView(time());
+
+        return view('SchoolReservation.index_index')
+        ->with('calendar',$calendar);
+
+    }
+
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
 
         return redirect()->back();
     }

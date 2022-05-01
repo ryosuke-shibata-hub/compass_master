@@ -36,3 +36,49 @@
     width: 70px;
     height: 70px;
 }
+
+
+
+
+
+
+
+
+.day-blank {
+	background-color: #efefef !important;
+}
+.day-sun .day{
+	color:red;
+}
+.day-sat .day{
+	color: blue;
+}
+.calendar table td {
+	padding: 3px;
+	border: solid 1px #999;
+}
+.calendar table td:before {
+	display: block;
+	float: left;
+	height: 50px;
+	content: "";
+}
+.calendar table td .day {
+	margin-bottom: 0;
+}
+.calendar table th {
+	text-align: center;
+	border: solid 1px #999;
+
+}
+th.sunday_head {
+    color: #d7003a;
+    border-bottom-color:#999;
+}
+th.saturday_head {
+    color: #00bfff;
+    border-bottom-color:#999;
+}
+th {
+    border-bottom-color:#999 !important;
+}

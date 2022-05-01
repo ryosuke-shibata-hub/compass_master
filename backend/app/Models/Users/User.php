@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -56,6 +57,11 @@ class User extends Authenticatable
 
         return $this->hasMany('App\Models\Users\CreateUserPersonChargesTable')
         ->join('users','user_person_charges.japanese_language_user_id',"=",'users.id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 
     public static function UserQuery() {

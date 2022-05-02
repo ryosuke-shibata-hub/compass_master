@@ -163,7 +163,7 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('my_task');
                     Route::post('/task/store','TaskController@store')
                     ->name('task_store');
-                    Route::delete('task/{task}', 'TaskController@destroy')
+                    Route::delete('/task/{task}','TaskController@destroy')
                     ->name('task_delete');
                 });
             });

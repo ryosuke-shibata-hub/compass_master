@@ -1,4 +1,4 @@
-@extends('layouts.login.common')
+{{-- @extends('layouts.login.common')
 @section('title','スクール予約')
 @include('layouts.login.header')
 @section('contents')
@@ -70,7 +70,7 @@
                         予約する
                         <input type="hidden" name="user_id" value={{ Auth::user()->id }}>
                     </button>
-                </form>
+            </form>
         </div>
 
     </div>
@@ -78,4 +78,4 @@
 
 
 @endsection
-@include('layouts.login.footer')
+@include('layouts.login.footer') --}}

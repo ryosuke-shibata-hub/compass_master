@@ -1,5 +1,5 @@
 <?php
-namespace App\Events;
+namespace App\Calendar;
 
 use Carbon\Carbon;
 
@@ -14,15 +14,9 @@ class CalendarWeek {
 	}
 
 	function getClassName(){
-		return "day-" . strtolower($this->carbon->format("D"));
+		return "week-" . $this->index;
 	}
 
-	/**
-	 * @return
-	 */
-	function render(){
-		return '<p class="day">' . $this->carbon->format("j"). '</p>';
-	}
 	/**
 	 * @return CalendarWeekDay[]
 	 */
@@ -49,7 +43,7 @@ class CalendarWeek {
 			}
 
 			//今月
-			$day = new CalendarWeek($tmpDay->copy());
+			$day = new CalendarWeekDay($tmpDay->copy());
 			$days[] = $day;
 			//翌日に移動
 			$tmpDay->addDay(1);

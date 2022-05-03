@@ -1,8 +1,10 @@
 <?php
-namespace App\Events;
+
+namespace App\Calendar;
 
 use Carbon\Carbon;
 
+//月の出力
 class CalendarView {
 
 	private $carbon;
@@ -23,9 +25,9 @@ class CalendarView {
 	function render(){
 		$html = [];
 		$html[] = '<div class="calendar">';
-		$html[] = '<table class="week_table table">';
-		$html[] = '<thead></thead>';
-		$html[] = '<tr class="week_head">';
+		$html[] = '<table class="table">';
+		$html[] = '<thead>';
+		$html[] = '<tr>';
 		$html[] = '<th>月</th>';
 		$html[] = '<th>火</th>';
 		$html[] = '<th>水</th>';
@@ -35,9 +37,7 @@ class CalendarView {
         $html[] = '<th class="sunday_head">日</th>';
 		$html[] = '</tr>';
 		$html[] = '</thead>';
-
         $html[] = '<tbody>';
-
 		$weeks = $this->getWeeks();
 		foreach($weeks as $week){
 			$html[] = '<tr class="'.$week->getClassName().'">';
@@ -49,39 +49,32 @@ class CalendarView {
 			}
 			$html[] = '</tr>';
 		}
-
 		$html[] = '</tbody>';
 		$html[] = '</table>';
 		$html[] = '</div>';
 		return implode("", $html);
 	}
 
-    protected function getWeeks(){
-		$weeks = [];
+    protected function getWeeks() {
+        $weeks = [];
 
-		//初日
-		$firstDay = $this->carbon->copy()->firstOfMonth();
+        $firstDay = $this->carbon->copy()->firstOfMonth();
+        $lastDay = $this->carbon->copy()->lastOfMonth();
 
-		//月末まで
-		$lastDay = $this->carbon->copy()->lastOfMonth();
+        $week = new CalendarWeek($firstDay->copy());
+        $weeks[] = $week;
 
-		//1週目
-		$week = new CalendarWeek($firstDay->copy());
-		$weeks[] = $week;
+        $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
 
-		//作業用の日
-		$tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
+        while ($tmpDay->lte($lastDay)) {
+            $week = new CalendarWeek($tmpDay, count($weeks));
+            $weeks[] = $week;
 
-		//月末までループさせる
-		while($tmpDay->lte($lastDay)){
-			//週カレンダーViewを作成する
-			$week = new CalendarWeek($tmpDay, count($weeks));
-			$weeks[] = $week;
+            $tmpDay->addDay(7);
+        }
 
-            //次の週=+7日する
-			$tmpDay->addDay(7);
-		}
+        return $weeks;
+    }
 
-		return $weeks;
-	}
+
 }

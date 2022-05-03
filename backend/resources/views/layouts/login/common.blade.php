@@ -53,11 +53,11 @@
                     <li class="user_list pt-5 nav_list">
                         <a href="/chat">チャット</a>
                     </li>
+                    {{-- <li class="user_list pt-5 nav_list">
+                        <a href="/school_reservation">スクール予約</a>
+                    </li> --}}
                     <li class="user_list pt-5 nav_list">
                         <a href="/school_reservation">スクール予約</a>
-                    </li>
-                    <li class="user_list pt-5 nav_list">
-                        <a href="/school_reservation_reservation">スクール予約予約</a>
                     </li>
                     <li class="user_list pt-5 nav_list">
                         <a href="/my_schedule">マイスケジュール</a>

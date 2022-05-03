@@ -1,10 +1,10 @@
 <?php
-namespace App\Events;
+namespace App\Calendar;
 
 /**
 * 余白を出力するためのクラス
 */
-class CalendarWeekBlankDay extends CalendarWeek {
+class CalendarWeekBlankDay extends CalendarWeekDay {
 
     function getClassName(){
 		return "day-blank";

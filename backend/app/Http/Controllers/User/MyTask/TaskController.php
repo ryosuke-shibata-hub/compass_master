@@ -9,6 +9,9 @@ use App\Models\Users\User;
 use App\Models\Task\Task;
 use App\Repositories\TaskRepository;
 use App\Policies\TaskPolicy;
+use Auth;
+use DB;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -39,6 +42,25 @@ class TaskController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function update(Request $request ,$id)
+    {
+        $user_id = Auth::user()->id;
+        $flg_id = $request->finished_flg;
+
+        if ($user_id == $request->user_id) {
+
+            DB::table('task')
+            ->where('id',$id)
+            ->update([
+                'finished_flg' => $flg_id,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            return redirect()->back();
+        }
+        return \App::abort(403,'unauthorized action.');
     }
 
     /**

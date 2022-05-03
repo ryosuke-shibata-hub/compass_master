@@ -165,6 +165,8 @@ Route::group(['middleware' => ['can:user']],function() {
                     ->name('task_store');
                     Route::delete('/task/{task}','TaskController@destroy')
                     ->name('task_delete');
+                    Route::post('/task/update/{task}','TaskController@update')
+                    ->name('task_update');
                 });
             });
         });

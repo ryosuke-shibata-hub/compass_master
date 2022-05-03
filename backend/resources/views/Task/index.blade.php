@@ -36,9 +36,8 @@
                             <th>登録日</th>
                             <th width="100">&nbsp;</th>
                             <th width="100">&nbsp;</th>
-                            {{-- <th width="100">&nbsp;</th> --}}
-                            {{-- <th width="100">&nbsp;</th> --}}
-                            <th width="100">操作</th>
+                            <th>状態</th>
+                            <th width="150">操作</th>
                             <th width="100">&nbsp;</th>
                         </tr>
 
@@ -51,13 +50,23 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <form action="{{ route('task_delete',[$task->id]) }}" method="POST">
+                                    @if($task->finished_flg == '1')
+                                        完了
+                                    @else
+                                        未完了
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('task_update',[$task->id]) }}" method="POST">
                                         @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-primary">
-                                            </i>完了済
-                                        </button>
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        @if ($task->finished_flg == '1')
+                                            <button type="submit" id="update-task-{{ $task->id }}" class="btn btn-secondary" name="finished_flg" value="0">未完了にする
+                                            </button>
+                                        @else
+                                            <button type="submit" id="update-task-{{ $task->id }}" class="btn btn-success" name="finished_flg" value="1">完了済にする
+                                            </button>
+                                        @endif
                                     </form>
                                 </td>
                                 <td>

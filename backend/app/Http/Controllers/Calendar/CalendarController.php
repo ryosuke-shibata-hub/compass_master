@@ -15,7 +15,11 @@ class CalendarController extends Controller
     {
         $calendar = new CalendarView(time());
 
-        return view('SchoolReservation.index_index')
+        return view('SchoolReservation.index')
         ->with('calendar',$calendar);
+    }
+
+    public function holiday_setting() {
+        return view('SchoolReservation.holiday_setting');
     }
 }

@@ -164,6 +164,8 @@ Route::group(['middleware' => ['can:user']],function() {
             Route::namespace('Calendar')->group(function() {
                 Route::get('/school_reservation','CalendarController@show')
                 ->name('Calendar_top');
+                Route::get('school_reservation/admin','CalendarController@holiday_setting')
+                ->name('holiday_setting');
             });
         });
 });
